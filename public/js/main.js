@@ -60,36 +60,21 @@
 
 	// Animations
 	var contentWayPoint = function() {
-		var i = 0;
 		$('.animate-box').waypoint( function( direction ) {
 
 			if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-				
-				i++;
+				var el = $(this.element);
+				var effect = el.data('animate-effect');
 
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .animate-box.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn animated');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft animated');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight animated');
-							} else {
-								el.addClass('fadeInUp animated');
-							}
-
-							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
-					});
-					
-				}, 100);
-				
+				if ( effect === 'fadeIn') {
+					el.addClass('fadeIn animated');
+				} else if ( effect === 'fadeInLeft') {
+					el.addClass('fadeInLeft animated');
+				} else if ( effect === 'fadeInRight') {
+					el.addClass('fadeInRight animated');
+				} else {
+					el.addClass('fadeInUp animated');
+				}
 			}
 
 		} , { offset: '85%' } );
@@ -111,8 +96,11 @@
 			}
 		});
 
+	};
 
-
+	var closeMobileMenu = function() {
+		$('body').removeClass('offcanvas');
+		$('.js-colorlib-nav-toggle').removeClass('active');
 	};
 
 	// Click outside of offcanvass
@@ -124,8 +112,7 @@
 
 	    	if ( $('body').hasClass('offcanvas') ) {
 
-    			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
+    			closeMobileMenu();
 			
 	    	}
 	    	
@@ -135,10 +122,15 @@
 		$(window).scroll(function(){
 			if ( $('body').hasClass('offcanvas') ) {
 
-    			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
+    			closeMobileMenu();
 			
 	    	}
+		});
+
+		$(window).resize(function(){
+			if ($(window).width() > 768 && $('body').hasClass('offcanvas')) {
+				closeMobileMenu();
+			}
 		});
 
 	};
@@ -158,7 +150,7 @@
 		    if ( navbar.is(':visible')) {
 		    	navbar.removeClass('in');
 		    	navbar.attr('aria-expanded', 'false');
-		    	$('.js-colorlib-nav-toggle').removeClass('active');
+		    	closeMobileMenu();
 		    }
 
 		    event.preventDefault();

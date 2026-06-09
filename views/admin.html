@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Admin — Leonardo Taborda</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="shortcut icon" href="/images/icons/admin-page-icon.png" />
+    <style>
+      /* =============================================
+         RESET & VARIABLES
+      ============================================= */
+      :root {
+        --sidebar-bg: #1f2d3d;
+        --sidebar-hover: #2c3e50;
+        --sidebar-active: #6495ed;
+        --sidebar-width: 260px;
+
+        --primary: #6495ed;
+        --primary-hover: #4a7fd4;
+        --danger: #ef4444;
+        --danger-hover: #dc2626;
+        --success: #22c55e;
+
+        --bg: #f4f6f9;
+        --card-bg: #ffffff;
+        --border: #e2e8f0;
+        --text: #1e293b;
+        --text-muted: #64748b;
+
+        --font: "Quicksand", -apple-system, sans-serif;
+        --radius: 12px;
+        --radius-sm: 8px;
+        --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        --shadow-hover: 0 8px 30px rgba(0,0,0,0.14);
+        --transition: 0.2s ease;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html { font-size: 16px; }
+
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* =============================================
+         SIDEBAR
+      ============================================= */
+      #sidebar {
+        width: var(--sidebar-width);
+        background: var(--sidebar-bg);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0; left: 0; bottom: 0;
+        z-index: 100;
+        transition: transform var(--transition);
+        overflow-y: auto;
+      }
+
+      .sidebar-brand {
+        padding: 2rem 1.5rem 1.5rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .sidebar-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background-image: url(/images/perfil-leotaborda.JPEG);
+        background-size: cover;
+        background-position: center;
+        margin: 0 auto 0.75rem;
+        border: 3px solid var(--primary);
+        box-shadow: 0 0 0 4px rgba(100,149,237,0.18);
+      }
+
+      .sidebar-brand h1 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.02em;
+      }
+
+      .sidebar-brand p {
+        font-size: 0.72rem;
+        color: rgba(255,255,255,0.45);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 0.2rem;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        padding: 1.2rem 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .nav-section-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: rgba(255,255,255,0.3);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.75rem 0.75rem 0.3rem;
+        margin-top: 0.5rem;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-sm);
+        color: rgba(255,255,255,0.7);
+        cursor: pointer;
+        transition: all var(--transition);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        border: none;
+        background: transparent;
+        width: 100%;
+        text-align: left;
+      }
+
+      .nav-item i {
+        font-size: 1.1rem;
+        min-width: 20px;
+      }
+
+      .nav-item:hover {
+        background: rgba(255,255,255,0.07);
+        color: #fff;
+      }
+
+      .nav-item.active {
+        background: rgba(100,149,237,0.2);
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .nav-item.nav-logout {
+        color: rgba(239,68,68,0.8);
+        margin-top: auto;
+      }
+
+      .nav-item.nav-logout:hover {
+        background: rgba(239,68,68,0.12);
+        color: #ef4444;
+      }
+
+      .sidebar-footer {
+        padding: 1rem 0.75rem;
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+
+      /* Badge de contagem de mensagens */
+      .nav-badge {
+        margin-left: auto;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        min-width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 6px;
+      }
+
+      /* Mobile sidebar toggle */
+      #sidebarToggle {
+        display: none;
+        position: fixed;
+        top: 1rem; left: 1rem;
+        z-index: 200;
+        background: var(--sidebar-bg);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius-sm);
+        width: 42px; height: 42px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+      }
+
+      /* Sidebar overlay on mobile */
+      #sidebarOverlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 99;
+      }
+
+      /* =============================================
+         MAIN CONTENT
+      ============================================= */
+      #main {
+        margin-left: var(--sidebar-width);
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        min-height: 100vh;
+      }
+
+      /* Top bar */
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .topbar h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.02em;
+      }
+
+      .topbar-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 0.1rem;
+      }
+
+      /* =============================================
+         SECTIONS
+      ============================================= */
+      .section { display: none; }
+      .section.active {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      /* =============================================
+         MESSAGES SECTION
+      ============================================= */
+      .search-action-bar {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        background: var(--card-bg);
+        padding: 1rem 1.25rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        flex-wrap: wrap;
+      }
+
+      .search-action-bar input[type="text"] {
+        flex: 1;
+        min-width: 180px;
+        padding: 0.65rem 1rem;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 0.9rem;
+        font-family: var(--font);
+        color: var(--text);
+        background: #f8fafc;
+        transition: border-color var(--transition), box-shadow var(--transition);
+      }
+
+      .search-action-bar input[type="text"]:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(100,149,237,0.15);
+        background: #fff;
+      }
+
+      .search-action-bar input::placeholder { color: var(--text-muted); }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.65rem 1.1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        font-family: var(--font);
+        border: none;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: all var(--transition);
+        white-space: nowrap;
+      }
+
+      .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
+
+      .btn-primary { background: var(--primary); color: #fff; }
+      .btn-primary:hover:not(:disabled) { background: var(--primary-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(100,149,237,0.35); }
+
+      .btn-danger { background: var(--danger); color: #fff; }
+      .btn-danger:hover:not(:disabled) { background: var(--danger-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(239,68,68,0.3); }
+
+      .btn-outline {
+        background: transparent;
+        border: 1.5px solid var(--border);
+        color: var(--text-muted);
+      }
+      .btn-outline:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
+
+      /* Messages accordion list */
+      #messages-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+      .msg-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: box-shadow var(--transition), border-color var(--transition);
+      }
+
+      .msg-card:hover {
+        box-shadow: var(--shadow);
+        border-color: rgba(100,149,237,0.3);
+      }
+
+      /* Accordion header */
+      .msg-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 1.2rem;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+      }
+
+      .msg-card-header::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 4px;
+        background: var(--primary);
+        opacity: 0;
+        transition: opacity var(--transition);
+      }
+
+      .msg-card:hover .msg-card-header::before,
+      .msg-card.expanded .msg-card-header::before { opacity: 1; }
+
+      .msg-checkbox {
+        display: none;
+        appearance: none;
+        width: 18px; height: 18px;
+        border: 2px solid var(--border);
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: all var(--transition);
+      }
+
+      .msg-checkbox:checked {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .msg-checkbox:checked::after {
+        content: '✓';
+        display: block;
+        text-align: center;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 14px;
+      }
+
+      #messages-list.select-mode .msg-checkbox { display: block; }
+
+      .msg-header-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .msg-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .msg-sender {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .msg-time {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+      }
+
+      .msg-chevron {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        transition: transform 0.25s ease;
+        flex-shrink: 0;
+      }
+
+      .msg-card.expanded .msg-chevron { transform: rotate(180deg); }
+
+      .msg-delete {
+        flex-shrink: 0;
+        width: 32px; height: 32px;
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--danger);
+        font-size: 0.85rem;
+        transition: all var(--transition);
+      }
+
+      .msg-delete:hover {
+        background: var(--danger);
+        border-color: var(--danger);
+        color: #fff;
+        transform: scale(1.08);
+      }
+
+      /* Accordion body */
+      .msg-card-body {
+        display: none;
+        padding: 0.85rem 1.2rem 1.1rem;
+        border-top: 1px solid var(--border);
+        background: #fafbfd;
+      }
+
+      .msg-card.expanded .msg-card-body { display: block; }
+
+      .msg-email-row {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+      }
+
+      .msg-email-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.82rem;
+      }
+
+      .msg-email-link:hover { text-decoration: underline; }
+
+      .msg-text {
+        font-size: 0.88rem;
+        color: #475569;
+        line-height: 1.6;
+        word-break: break-word;
+        white-space: pre-wrap;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: var(--text-muted);
+      }
+
+      .empty-state i { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+      .empty-state p { font-size: 1rem; font-weight: 500; }
+
+      /* =============================================
+         COMMENTS SECTION
+      ============================================= */
+      .comment-layout {
+        display: grid;
+        grid-template-columns: minmax(280px, 380px) 1fr;
+        gap: 1.25rem;
+        align-items: start;
+      }
+
+      .project-layout {
+        display: grid;
+        grid-template-columns: minmax(280px, 420px) 1fr;
+        gap: 1.25rem;
+        align-items: start;
+      }
+
+      .comment-form,
+      .project-form,
+      .comment-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .comment-form {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.95rem;
+      }
+
+      .project-form {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.95rem;
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .form-field label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .form-field input,
+      .form-field select,
+      .form-field textarea {
+        width: 100%;
+        padding: 0.7rem 0.85rem;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: #f8fafc;
+        color: var(--text);
+        font: 0.9rem var(--font);
+        transition: border-color var(--transition), box-shadow var(--transition);
+      }
+
+      .form-field textarea {
+        min-height: 120px;
+        resize: vertical;
+        line-height: 1.5;
+      }
+
+      .form-field input:focus,
+      .form-field select:focus,
+      .form-field textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(100,149,237,0.15);
+        background: #fff;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+      }
+
+      #comments-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1rem;
+      }
+
+      #projects-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .project-admin-card,
+      .comment-card {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .project-admin-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .project-admin-top {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .project-admin-order {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(100,149,237,0.16);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .project-admin-title {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .project-admin-title strong,
+      .project-admin-title span,
+      .project-admin-card p,
+      .project-admin-link,
+      .project-admin-tags span {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .project-admin-title strong {
+        display: block;
+        font-size: 0.95rem;
+        color: var(--text);
+      }
+
+      .project-admin-title span {
+        display: block;
+        margin-top: 0.1rem;
+        color: var(--text-muted);
+        font-size: 0.78rem;
+      }
+
+      .project-admin-card p {
+        color: #475569;
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+
+      .project-admin-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .project-admin-tags span {
+        background: #f1f5f9;
+        color: #475569;
+        border-radius: 999px;
+        padding: 0.22rem 0.55rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+      }
+
+      .project-admin-link {
+        color: var(--primary);
+        font-size: 0.82rem;
+        text-decoration: none;
+      }
+
+      .project-admin-link:hover { text-decoration: underline; }
+
+      .project-order-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .comment-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .comment-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: rgba(100,149,237,0.16);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .comment-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .comment-person {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .comment-person strong {
+        display: block;
+        color: var(--text);
+        font-size: 0.95rem;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .comment-person span {
+        display: block;
+        color: var(--text-muted);
+        font-size: 0.78rem;
+        margin-top: 0.1rem;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .comment-text {
+        color: #475569;
+        font-size: 0.88rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .comment-card-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: auto;
+      }
+
+      .comment-card-actions .btn {
+        padding: 0.55rem 0.8rem;
+      }
+
+      /* =============================================
+         MODALS
+      ============================================= */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        backdrop-filter: blur(6px);
+        z-index: 500;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .modal-overlay.open { display: flex; }
+
+      .modal-box {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 2rem;
+        max-width: 420px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        position: relative;
+        animation: modalIn 0.25s ease;
+      }
+
+      @keyframes modalIn {
+        from { opacity: 0; transform: scale(0.9) translateY(-10px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+      }
+
+      .modal-box .modal-icon { font-size: 2.8rem; margin-bottom: 0.75rem; }
+      .modal-box h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+      .modal-box p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; }
+
+      .modal-actions { display: flex; gap: 0.75rem; justify-content: center; }
+
+      .modal-close-x {
+        position: absolute;
+        top: 1rem; right: 1rem;
+        width: 30px; height: 30px;
+        border: none; background: #f1f5f9;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--text-muted);
+        display: flex; align-items: center; justify-content: center;
+        transition: all var(--transition);
+      }
+
+      .modal-close-x:hover { background: #e2e8f0; color: var(--text); }
+
+      /* =============================================
+         LOADING OVERLAY
+      ============================================= */
+      #authGuard {
+        position: fixed; inset: 0;
+        background: var(--sidebar-bg);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        z-index: 9999;
+        gap: 1rem;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+        font-family: var(--font);
+      }
+
+      .spinner {
+        width: 40px; height: 40px;
+        border: 3px solid rgba(255,255,255,0.2);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      /* =============================================
+         RESPONSIVE
+      ============================================= */
+      @media (max-width: 768px) {
+        #sidebar { transform: translateX(-100%); }
+        #sidebar.open { transform: translateX(0); }
+        #sidebarToggle { display: flex; }
+        #sidebarOverlay.open { display: block; }
+        #main { margin-left: 0; padding: 1rem; padding-top: 4.5rem; }
+        .topbar h2 { font-size: 1.2rem; }
+        .comment-layout { grid-template-columns: 1fr; }
+        .project-layout { grid-template-columns: 1fr; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { transition: none !important; animation: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Auth guard (shown while checking login state) -->
+    <div id="authGuard">
+      <div class="spinner"></div>
+      <span>Verificando autenticação...</span>
+    </div>
+
+    <!-- Mobile sidebar toggle -->
+    <button id="sidebarToggle" aria-label="Abrir menu"><i class="bi bi-list"></i></button>
+    <div id="sidebarOverlay"></div>
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-avatar"></div>
+        <h1>Leonardo Taborda</h1>
+        <p>Painel Administrativo</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Gerenciar</span>
+
+        <button class="nav-item active" data-section="messages" onclick="showSection('messages', this)">
+          <i class="bi bi-chat-dots"></i>
+          Mensagens
+          <span class="nav-badge" id="msgBadge" style="display:none">0</span>
+        </button>
+
+        <button class="nav-item" data-section="comments" onclick="showSection('comments', this)">
+          <i class="bi bi-chat-square-quote"></i>
+          Comentarios
+          <span class="nav-badge" id="commentBadge" style="display:none">0</span>
+        </button>
+
+        <button class="nav-item" data-section="projects" onclick="showSection('projects', this)">
+          <i class="bi bi-kanban"></i>
+          Projetos
+          <span class="nav-badge" id="projectBadge" style="display:none">0</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="nav-item nav-logout" onclick="doLogout()">
+          <i class="bi bi-box-arrow-left"></i>
+          Sair
+        </button>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <main id="main">
+
+      <!-- ---- MESSAGES SECTION ---- -->
+      <section id="section-messages" class="section active">
+        <div class="topbar">
+          <div>
+            <h2>Mensagens Recebidas</h2>
+            <div class="topbar-meta" id="msgCount">Carregando...</div>
+          </div>
+        </div>
+
+        <div class="search-action-bar">
+          <input type="text" id="searchBar" placeholder="Buscar por nome..." oninput="filterMessages()" />
+          <button class="btn btn-outline" id="selectBtn" onclick="toggleSelectMode()">
+            <i class="bi bi-check2-square"></i> Selecionar
+          </button>
+          <button class="btn btn-danger" id="bulkDeleteBtn" onclick="openBulkModal()" disabled>
+            <i class="bi bi-trash3"></i> Apagar selecionados
+          </button>
+        </div>
+
+        <div id="messages-list"></div>
+      </section>
+
+      <!-- ---- PROJECTS SECTION ---- -->
+      <section id="section-projects" class="section">
+        <div class="topbar">
+          <div>
+            <h2>Projetos do Portfolio</h2>
+            <div class="topbar-meta" id="projectCount">Carregando...</div>
+          </div>
+        </div>
+
+        <div class="project-layout">
+          <form class="project-form" id="projectForm">
+            <input type="hidden" id="projectId" />
+            <div class="form-field">
+              <label for="projectTitle">Titulo</label>
+              <input type="text" id="projectTitle" maxlength="90" required />
+            </div>
+            <div class="form-field">
+              <label for="projectCategory">Categoria</label>
+              <input type="text" id="projectCategory" maxlength="60" placeholder="Ex.: Front-End" required />
+            </div>
+            <div class="form-field">
+              <label for="projectDescription">Descricao</label>
+              <textarea id="projectDescription" maxlength="500" required></textarea>
+            </div>
+            <div class="form-field">
+              <label for="projectTags">Tags</label>
+              <input type="text" id="projectTags" maxlength="160" placeholder="Angular, React, Firebase" />
+            </div>
+            <div class="form-field">
+              <label for="projectLink">Link do projeto</label>
+              <input type="url" id="projectLink" maxlength="1000" placeholder="https://..." required />
+            </div>
+            <div class="form-field">
+              <label for="projectIcon">Icone Bootstrap</label>
+              <input type="text" id="projectIcon" maxlength="60" value="bi-window-sidebar" placeholder="bi-window-sidebar" />
+            </div>
+            <div class="form-field">
+              <label for="projectOrder">Posicao</label>
+              <select id="projectOrder"></select>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="projectSaveBtn" type="submit">
+                <i class="bi bi-save"></i> Salvar projeto
+              </button>
+              <button class="btn btn-outline" id="projectCancelBtn" type="button" onclick="resetProjectForm()" style="display:none">
+                <i class="bi bi-x-lg"></i> Cancelar
+              </button>
+            </div>
+          </form>
+
+          <div id="projects-list"></div>
+        </div>
+      </section>
+
+      <!-- ---- COMMENTS SECTION ---- -->
+      <section id="section-comments" class="section">
+        <div class="topbar">
+          <div>
+            <h2>Comentarios do Portfolio</h2>
+            <div class="topbar-meta" id="commentCount">Carregando...</div>
+          </div>
+        </div>
+
+        <div class="comment-layout">
+          <form class="comment-form" id="commentForm">
+            <input type="hidden" id="commentId" />
+            <div class="form-field">
+              <label for="commentName">Nome</label>
+              <input type="text" id="commentName" maxlength="80" required />
+            </div>
+            <div class="form-field">
+              <label for="commentRole">Cargo ou empresa</label>
+              <input type="text" id="commentRole" maxlength="100" placeholder="Ex.: Tech Lead na Empresa" />
+            </div>
+            <div class="form-field">
+              <label for="commentPhoto">Foto</label>
+              <input type="url" id="commentPhoto" placeholder="Link publico do Google" />
+            </div>
+            <div class="form-field">
+              <label for="commentText">Comentario</label>
+              <textarea id="commentText" maxlength="500" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="commentSaveBtn" type="submit">
+                <i class="bi bi-save"></i> Salvar comentario
+              </button>
+              <button class="btn btn-outline" id="commentCancelBtn" type="button" onclick="resetCommentForm()" style="display:none">
+                <i class="bi bi-x-lg"></i> Cancelar
+              </button>
+            </div>
+          </form>
+
+          <div id="comments-list"></div>
+        </div>
+      </section>
+
+
+
+    </main>
+
+    <!-- ============ MODAL — Delete Single ============ -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal-box">
+        <button class="modal-close-x" onclick="closeModal('deleteModal')">&times;</button>
+        <div class="modal-icon">🗑️</div>
+        <h3>Excluir mensagem?</h3>
+        <p>Esta ação não pode ser desfeita. A mensagem será removida permanentemente.</p>
+        <div class="modal-actions">
+          <button class="btn btn-outline" onclick="closeModal('deleteModal')">Cancelar</button>
+          <button class="btn btn-danger" onclick="confirmDelete()">Sim, excluir</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MODAL — Bulk Delete ============ -->
+    <div class="modal-overlay" id="bulkDeleteModal">
+      <div class="modal-box">
+        <button class="modal-close-x" onclick="closeModal('bulkDeleteModal')">&times;</button>
+        <div class="modal-icon">⚠️</div>
+        <h3>Excluir mensagens selecionadas?</h3>
+        <p id="bulkDeleteCount">Esta ação irá excluir as mensagens selecionadas permanentemente.</p>
+        <div class="modal-actions">
+          <button class="btn btn-outline" onclick="closeModal('bulkDeleteModal')">Cancelar</button>
+          <button class="btn btn-danger" onclick="confirmBulkDelete()">Sim, excluir todas</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FIREBASE SDKs ============ -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+      import {
+        getFirestore, collection, onSnapshot, deleteDoc, doc, query, orderBy,
+        addDoc, updateDoc, serverTimestamp, writeBatch
+      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+      import { firebaseConfig } from "/js/firebase-config.js";
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const firestore = getFirestore(app);
+
+      // ---- Auth guard ----
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "/login.html";
+        } else {
+          document.getElementById("authGuard").style.display = "none";
+          initApp(user);
+        }
+      });
+
+      // ---- Expose globals ----
+      let currentUser = null;
+      let messageIdToDelete = null;
+      let selectedMessages = new Set();
+      let isSelectMode = false;
+      let allMessages = [];
+      let allProjects = [];
+      let allComments = [];
+
+      function initApp(user) {
+        currentUser = user;
+        listenMessages();
+        listenProjects();
+        listenComments();
+        bindProjectForm();
+        bindCommentForm();
+      }
+
+      // ---- Realtime messages listener ----
+      function listenMessages() {
+        const q = query(collection(firestore, "messages"), orderBy("timestamp", "desc"));
+        onSnapshot(q, (snapshot) => {
+          allMessages = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderMessages(allMessages);
+          updateBadge(allMessages.length);
+        }, (err) => {
+          console.error(err);
+          document.getElementById("messages-list").innerHTML =
+            `<div class="empty-state"><i class="bi bi-shield-lock"></i><p>Sem permissao para carregar mensagens.</p></div>`;
+          document.getElementById("msgCount").textContent = "Erro de permissao";
+        });
+      }
+
+      function renderMessages(msgs) {
+        const list = document.getElementById("messages-list");
+        const count = document.getElementById("msgCount");
+
+        if (msgs.length === 0) {
+          list.innerHTML = `<div class="empty-state"><i class="bi bi-inbox"></i><p>Nenhuma mensagem recebida ainda.</p></div>`;
+          count.textContent = "0 mensagens";
+          return;
+        }
+
+        count.textContent = `${msgs.length} mensagem${msgs.length !== 1 ? "s" : ""}`;
+        list.innerHTML = msgs.map((msg) => {
+          const time = msg.timestamp?.toDate
+            ? msg.timestamp.toDate().toLocaleString("pt-BR")
+            : "";
+          return `
+            <div class="msg-card" id="msg-${msg.id}">
+              <div class="msg-card-header" onclick="toggleMsg('${msg.id}')">
+                <input type="checkbox" class="msg-checkbox" id="chk-${msg.id}"
+                  onclick="event.stopPropagation()"
+                  onchange="toggleSelect('${msg.id}')" />
+                <div class="msg-header-info">
+                  <span class="msg-title">${escapeHtml(msg.titulo)}</span>
+                  <span class="msg-sender">${escapeHtml(msg.nome)}</span>
+                  ${time ? `<span class="msg-time"><i class="bi bi-clock"></i> ${time}</span>` : ""}
+                </div>
+                <i class="bi bi-chevron-down msg-chevron"></i>
+                <button class="msg-delete" onclick="event.stopPropagation(); openDeleteModal('${msg.id}')" title="Excluir">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+              <div class="msg-card-body" id="msgbody-${msg.id}">
+                <div class="msg-email-row">
+                  <i class="bi bi-envelope"></i>
+                  <a class="msg-email-link" href="mailto:${escapeHtml(msg.email)}">${escapeHtml(msg.email)}</a>
+                </div>
+                <div class="msg-text">${escapeHtml(msg.mensagem)}</div>
+              </div>
+            </div>`;
+        }).join("");
+
+        if (isSelectMode) {
+          document.querySelectorAll(".msg-checkbox").forEach((c) => (c.style.display = "block"));
+        }
+      }
+
+      window.toggleMsg = function (id) {
+        document.getElementById(`msg-${id}`).classList.toggle("expanded");
+      };
+
+      function updateBadge(n) {
+        const badge = document.getElementById("msgBadge");
+        if (n > 0) { badge.textContent = n; badge.style.display = "flex"; }
+        else { badge.style.display = "none"; }
+      }
+
+      function updateCommentBadge(n) {
+        const badge = document.getElementById("commentBadge");
+        if (n > 0) { badge.textContent = n; badge.style.display = "flex"; }
+        else { badge.style.display = "none"; }
+      }
+
+      function updateProjectBadge(n) {
+        const badge = document.getElementById("projectBadge");
+        if (n > 0) { badge.textContent = n; badge.style.display = "flex"; }
+        else { badge.style.display = "none"; }
+      }
+
+      function escapeHtml(str = "") {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#x27;");
+      }
+
+      // ---- Select mode ----
+      window.toggleSelectMode = function () {
+        isSelectMode = !isSelectMode;
+        const list = document.getElementById("messages-list");
+        list.classList.toggle("select-mode", isSelectMode);
+        document.querySelectorAll(".msg-checkbox").forEach((c) => {
+          c.style.display = isSelectMode ? "block" : "none";
+          c.checked = false;
+        });
+        selectedMessages.clear();
+        document.getElementById("bulkDeleteBtn").disabled = true;
+        document.getElementById("selectBtn").innerHTML = isSelectMode
+          ? '<i class="bi bi-x-lg"></i> Cancelar'
+          : '<i class="bi bi-check2-square"></i> Selecionar';
+      };
+
+      window.toggleSelect = function (id) {
+        const chk = document.getElementById(`chk-${id}`);
+        if (chk.checked) selectedMessages.add(id);
+        else selectedMessages.delete(id);
+        document.getElementById("bulkDeleteBtn").disabled = selectedMessages.size === 0;
+      };
+
+      // ---- Filter ----
+      window.filterMessages = function () {
+        const q = document.getElementById("searchBar").value.toLowerCase();
+        const filtered = q
+          ? allMessages.filter((m) => m.nome?.toLowerCase().includes(q) || m.titulo?.toLowerCase().includes(q))
+          : allMessages;
+        renderMessages(filtered);
+      };
+
+      // ---- Delete single ----
+      window.openDeleteModal = function (id) {
+        messageIdToDelete = id;
+        document.getElementById("deleteModal").classList.add("open");
+      };
+
+      window.confirmDelete = async function () {
+        if (!messageIdToDelete) return;
+        await deleteDoc(doc(firestore, "messages", messageIdToDelete));
+        closeModal("deleteModal");
+        messageIdToDelete = null;
+      };
+
+      // ---- Delete bulk ----
+      window.openBulkModal = function () {
+        if (selectedMessages.size === 0) return;
+        document.getElementById("bulkDeleteCount").textContent =
+          `Esta ação irá excluir ${selectedMessages.size} mensagem(ns) selecionada(s) permanentemente.`;
+        document.getElementById("bulkDeleteModal").classList.add("open");
+      };
+
+      window.confirmBulkDelete = async function () {
+        const ids = Array.from(selectedMessages);
+        await Promise.all(ids.map((id) => deleteDoc(doc(firestore, "messages", id))));
+        selectedMessages.clear();
+        isSelectMode = false;
+        document.getElementById("messages-list").classList.remove("select-mode");
+        document.getElementById("bulkDeleteBtn").disabled = true;
+        document.getElementById("selectBtn").innerHTML = '<i class="bi bi-check2-square"></i> Selecionar';
+        closeModal("bulkDeleteModal");
+      };
+
+      // ---- Realtime projects listener ----
+      function listenProjects() {
+        const q = query(collection(firestore, "projects"), orderBy("ordem", "asc"));
+        onSnapshot(q, (snapshot) => {
+          allProjects = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderProjects(allProjects);
+          updateProjectBadge(allProjects.length);
+          updateProjectOrderOptions();
+        }, (err) => {
+          console.error(err);
+          document.getElementById("projects-list").innerHTML =
+            `<div class="empty-state"><i class="bi bi-shield-lock"></i><p>Sem permissao para carregar projetos.</p></div>`;
+          document.getElementById("projectCount").textContent = "Erro de permissao";
+        });
+      }
+
+      function renderProjects(projects) {
+        const list = document.getElementById("projects-list");
+        const count = document.getElementById("projectCount");
+
+        if (projects.length === 0) {
+          list.innerHTML = `<div class="empty-state"><i class="bi bi-kanban"></i><p>Nenhum projeto cadastrado ainda.</p></div>`;
+          count.textContent = "0 projetos";
+          return;
+        }
+
+        count.textContent = `${projects.length} projeto${projects.length !== 1 ? "s" : ""}`;
+        list.innerHTML = projects.map((project, index) => {
+          const tags = normalizeTags(project.tags);
+          return `
+            <article class="project-admin-card">
+              <div class="project-admin-top">
+                <div class="project-admin-order">${index + 1}</div>
+                <div class="project-admin-title">
+                  <strong>${escapeHtml(project.titulo)}</strong>
+                  <span>${escapeHtml(project.categoria)}</span>
+                </div>
+              </div>
+              <p>${escapeHtml(project.descricao)}</p>
+              ${tags.length ? `<div class="project-admin-tags">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
+              <a class="project-admin-link" href="${escapeHtml(project.link)}" target="_blank" rel="noopener">${escapeHtml(project.link)}</a>
+              <div class="project-order-actions">
+                <button class="btn btn-outline" onclick="moveProject('${project.id}', -1)" ${index === 0 ? "disabled" : ""}>
+                  <i class="bi bi-arrow-up"></i> Subir
+                </button>
+                <button class="btn btn-outline" onclick="moveProject('${project.id}', 1)" ${index === projects.length - 1 ? "disabled" : ""}>
+                  <i class="bi bi-arrow-down"></i> Descer
+                </button>
+              </div>
+              <div class="comment-card-actions">
+                <button class="btn btn-outline" onclick="editProject('${project.id}')">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </button>
+                <button class="btn btn-danger" onclick="deleteProject('${project.id}')">
+                  <i class="bi bi-trash3"></i> Excluir
+                </button>
+              </div>
+            </article>`;
+        }).join("");
+      }
+
+      function bindProjectForm() {
+        document.getElementById("projectForm").addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const id = document.getElementById("projectId").value;
+          const desiredOrder = Number(document.getElementById("projectOrder").value) || 1;
+          const saveBtn = document.getElementById("projectSaveBtn");
+          const payload = {
+            titulo: document.getElementById("projectTitle").value.trim(),
+            categoria: document.getElementById("projectCategory").value.trim(),
+            descricao: document.getElementById("projectDescription").value.trim(),
+            tags: parseTags(document.getElementById("projectTags").value),
+            link: document.getElementById("projectLink").value.trim(),
+            icone: normalizeIcon(document.getElementById("projectIcon").value.trim()),
+            updatedAt: serverTimestamp(),
+          };
+
+          saveBtn.disabled = true;
+          saveBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Salvando...';
+
+          try {
+            if (id) {
+              await updateDoc(doc(firestore, "projects", id), payload);
+              await reorderProject(id, desiredOrder);
+            } else {
+              const projectRef = await addDoc(collection(firestore, "projects"), {
+                ...payload,
+                ordem: 1,
+                timestamp: serverTimestamp(),
+              });
+              await reorderProject(projectRef.id, desiredOrder);
+            }
+
+            resetProjectForm();
+          } catch (err) {
+            console.error(err);
+            alert("Erro ao salvar o projeto. Confira as permissoes e tente novamente.");
+          } finally {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = document.getElementById("projectId").value
+              ? '<i class="bi bi-save"></i> Atualizar projeto'
+              : '<i class="bi bi-save"></i> Salvar projeto';
+          }
+        });
+
+        updateProjectOrderOptions();
+      }
+
+      function updateProjectOrderOptions(selectedOrder) {
+        const select = document.getElementById("projectOrder");
+        if (!select) return;
+
+        const editingId = document.getElementById("projectId")?.value;
+        const maxOrder = allProjects.length + (editingId ? 0 : 1);
+        const currentValue = selectedOrder || Number(select.value) || 1;
+
+        select.innerHTML = Array.from({ length: Math.max(1, maxOrder) }, (_, index) => {
+          const order = index + 1;
+          const label = order === 1 ? "1 - Primeiro" : `${order}`;
+          return `<option value="${order}">${label}</option>`;
+        }).join("");
+
+        select.value = String(Math.min(Math.max(1, currentValue), Math.max(1, maxOrder)));
+      }
+
+      async function reorderProject(id, desiredOrder) {
+        const orderedIds = allProjects.map((project) => project.id).filter((projectId) => projectId !== id);
+        const targetIndex = Math.min(Math.max(desiredOrder - 1, 0), orderedIds.length);
+        orderedIds.splice(targetIndex, 0, id);
+
+        const batch = writeBatch(firestore);
+        orderedIds.forEach((projectId, index) => {
+          batch.update(doc(firestore, "projects", projectId), { ordem: index + 1, updatedAt: serverTimestamp() });
+        });
+        await batch.commit();
+      }
+
+      window.moveProject = async function (id, direction) {
+        const currentIndex = allProjects.findIndex((project) => project.id === id);
+        if (currentIndex < 0) return;
+
+        const newIndex = currentIndex + direction;
+        if (newIndex < 0 || newIndex >= allProjects.length) return;
+
+        await reorderProject(id, newIndex + 1);
+      };
+
+      window.editProject = function (id) {
+        const project = allProjects.find((item) => item.id === id);
+        if (!project) return;
+
+        document.getElementById("projectId").value = project.id;
+        document.getElementById("projectTitle").value = project.titulo || "";
+        document.getElementById("projectCategory").value = project.categoria || "";
+        document.getElementById("projectDescription").value = project.descricao || "";
+        document.getElementById("projectTags").value = normalizeTags(project.tags).join(", ");
+        document.getElementById("projectLink").value = project.link || "";
+        document.getElementById("projectIcon").value = project.icone || "";
+        updateProjectOrderOptions(project.ordem || 1);
+        document.getElementById("projectSaveBtn").innerHTML = '<i class="bi bi-save"></i> Atualizar projeto';
+        document.getElementById("projectCancelBtn").style.display = "inline-flex";
+        document.getElementById("projectTitle").focus();
+      };
+
+      window.deleteProject = async function (id) {
+        const confirmed = window.confirm("Excluir este projeto permanentemente?");
+        if (!confirmed) return;
+        await deleteDoc(doc(firestore, "projects", id));
+        resetProjectForm();
+        const remainingIds = allProjects.map((project) => project.id).filter((projectId) => projectId !== id);
+        const batch = writeBatch(firestore);
+        remainingIds.forEach((projectId, index) => {
+          batch.update(doc(firestore, "projects", projectId), { ordem: index + 1, updatedAt: serverTimestamp() });
+        });
+        await batch.commit();
+      };
+
+      window.resetProjectForm = function () {
+        document.getElementById("projectForm").reset();
+        document.getElementById("projectId").value = "";
+        document.getElementById("projectIcon").value = "bi-window-sidebar";
+        document.getElementById("projectSaveBtn").innerHTML = '<i class="bi bi-save"></i> Salvar projeto';
+        document.getElementById("projectCancelBtn").style.display = "none";
+        updateProjectOrderOptions(1);
+      };
+
+      function parseTags(value = "") {
+        return String(value)
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter(Boolean)
+          .slice(0, 8);
+      }
+
+      function normalizeTags(tags) {
+        return Array.isArray(tags) ? tags.filter(Boolean) : parseTags(tags);
+      }
+
+      function normalizeIcon(icon = "") {
+        const value = icon.trim();
+        if (!value) return "bi-window-sidebar";
+        return value.startsWith("bi-") ? value : `bi-${value}`;
+      }
+
+      // ---- Realtime comments listener ----
+      function listenComments() {
+        const q = query(collection(firestore, "comments"), orderBy("timestamp", "desc"));
+        onSnapshot(q, (snapshot) => {
+          allComments = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+          renderComments(allComments);
+          updateCommentBadge(allComments.length);
+        }, (err) => {
+          console.error(err);
+          document.getElementById("comments-list").innerHTML =
+            `<div class="empty-state"><i class="bi bi-shield-lock"></i><p>Sem permissao para carregar comentarios.</p></div>`;
+          document.getElementById("commentCount").textContent = "Erro de permissao";
+        });
+      }
+
+      function renderComments(comments) {
+        const list = document.getElementById("comments-list");
+        const count = document.getElementById("commentCount");
+
+        if (comments.length === 0) {
+          list.innerHTML = `<div class="empty-state"><i class="bi bi-chat-square-quote"></i><p>Nenhum comentario cadastrado ainda.</p></div>`;
+          count.textContent = "0 comentarios";
+          return;
+        }
+
+        count.textContent = `${comments.length} comentario${comments.length !== 1 ? "s" : ""}`;
+        list.innerHTML = comments.map((comment) => {
+          const initials = getInitials(comment.nome);
+          const photo = comment.fotoUrl
+            ? `<img src="${escapeHtml(comment.fotoUrl)}" alt="${escapeHtml(comment.nome)}" data-fallback="${escapeHtml(initials)}" />`
+            : escapeHtml(initials);
+
+          return `
+            <article class="comment-card">
+              <div class="comment-card-header">
+                <div class="comment-avatar">${photo}</div>
+                <div class="comment-person">
+                  <strong>${escapeHtml(comment.nome)}</strong>
+                  <span>${escapeHtml(comment.cargo || "Sem cargo informado")}</span>
+                </div>
+              </div>
+              <p class="comment-text">${escapeHtml(comment.comentario)}</p>
+              <div class="comment-card-actions">
+                <button class="btn btn-outline" onclick="editComment('${comment.id}')">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </button>
+                <button class="btn btn-danger" onclick="deleteComment('${comment.id}')">
+                  <i class="bi bi-trash3"></i> Excluir
+                </button>
+              </div>
+            </article>`;
+        }).join("");
+
+        list.querySelectorAll("img[data-fallback]").forEach((img) => {
+          img.addEventListener("error", () => {
+            const parent = img.parentElement;
+            parent.textContent = img.dataset.fallback || "?";
+          }, { once: true });
+        });
+      }
+
+      function bindCommentForm() {
+        document.getElementById("commentForm").addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const id = document.getElementById("commentId").value;
+          const nome = document.getElementById("commentName").value.trim();
+          const cargo = document.getElementById("commentRole").value.trim();
+          const fotoUrl = document.getElementById("commentPhoto").value.trim();
+          const comentario = document.getElementById("commentText").value.trim();
+          const saveBtn = document.getElementById("commentSaveBtn");
+
+          saveBtn.disabled = true;
+          saveBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Salvando...';
+
+          try {
+            const payload = {
+              nome,
+              cargo,
+              fotoUrl,
+              comentario,
+              updatedAt: serverTimestamp(),
+            };
+
+            if (id) {
+              await updateDoc(doc(firestore, "comments", id), payload);
+            } else {
+              await addDoc(collection(firestore, "comments"), {
+                ...payload,
+                timestamp: serverTimestamp(),
+              });
+            }
+
+            resetCommentForm();
+          } catch (err) {
+            console.error(err);
+            alert("Erro ao salvar o comentario. Confira os dados e tente novamente.");
+          } finally {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = document.getElementById("commentId").value
+              ? '<i class="bi bi-save"></i> Atualizar comentario'
+              : '<i class="bi bi-save"></i> Salvar comentario';
+          }
+        });
+      }
+
+      window.editComment = function (id) {
+        const comment = allComments.find((item) => item.id === id);
+        if (!comment) return;
+
+        document.getElementById("commentId").value = comment.id;
+        document.getElementById("commentName").value = comment.nome || "";
+        document.getElementById("commentRole").value = comment.cargo || "";
+        document.getElementById("commentPhoto").value = comment.fotoUrl || "";
+        document.getElementById("commentText").value = comment.comentario || "";
+        document.getElementById("commentSaveBtn").innerHTML = '<i class="bi bi-save"></i> Atualizar comentario';
+        document.getElementById("commentCancelBtn").style.display = "inline-flex";
+        document.getElementById("commentName").focus();
+      };
+
+      window.deleteComment = async function (id) {
+        const confirmed = window.confirm("Excluir este comentario permanentemente?");
+        if (!confirmed) return;
+        await deleteDoc(doc(firestore, "comments", id));
+        resetCommentForm();
+      };
+
+      window.resetCommentForm = function () {
+        document.getElementById("commentForm").reset();
+        document.getElementById("commentId").value = "";
+        document.getElementById("commentSaveBtn").innerHTML = '<i class="bi bi-save"></i> Salvar comentario';
+        document.getElementById("commentCancelBtn").style.display = "none";
+      };
+
+      function getInitials(name = "") {
+        const parts = String(name).trim().split(/\s+/).filter(Boolean);
+        if (parts.length === 0) return "?";
+        return parts.slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+      }
+
+      // ---- Logout ----
+      window.doLogout = async function () {
+        await signOut(auth);
+        window.location.href = "/login.html";
+      };
+
+      // ---- Modal helpers ----
+      window.closeModal = function (id) {
+        document.getElementById(id).classList.remove("open");
+      };
+
+      // Close modals on backdrop click
+      document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) overlay.classList.remove("open");
+        });
+      });
+
+      // ---- Section switching ----
+      window.showSection = function (name, btn) {
+        document.querySelectorAll(".section").forEach((s) => s.classList.remove("active"));
+        document.querySelectorAll(".nav-item").forEach((i) => i.classList.remove("active"));
+        document.getElementById(`section-${name}`).classList.add("active");
+        btn.classList.add("active");
+        // Close sidebar on mobile
+        if (window.innerWidth <= 768) closeSidebar();
+      };
+
+      // ---- Mobile sidebar ----
+      document.getElementById("sidebarToggle").addEventListener("click", () => {
+        document.getElementById("sidebar").classList.add("open");
+        document.getElementById("sidebarOverlay").classList.add("open");
+      });
+
+      function closeSidebar() {
+        document.getElementById("sidebar").classList.remove("open");
+        document.getElementById("sidebarOverlay").classList.remove("open");
+      }
+
+      document.getElementById("sidebarOverlay").addEventListener("click", closeSidebar);
+    </script>
+  </body>
+</html>

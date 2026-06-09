@@ -41,12 +41,16 @@
 
 	</head>
 	<body>
+	<div id="pageLoader" class="page-loader" aria-live="polite" aria-busy="true">
+		<div class="page-loader-spinner"></div>
+		<span id="pageLoaderText">Carregando...</span>
+	</div>
 	<div id="colorlib-page">
 		<div class="container-wrap">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
 			<div class="text-center">
-				<div class="author-img" style="background-image: url(images/IMG_4407.JPEG);"></div>
+				<div class="author-img" style="background-image: url(images/perfil-leotaborda.JPEG);"></div>
 				<h1 class="colorlib-logo" id="colorlib-logo"><a href="index.html">Leonardo Taborda</a></h1>
 				<span class="position"><a href="#">Dev Front-End</a> em Campinas - SP</span>
 			</div>
@@ -59,14 +63,22 @@
 						<li><a href="#" data-nav-section="skills">Conhecimentos</a></li>
 						<li><a href="#" data-nav-section="education">Formação</a></li>
 						<li><a href="#" data-nav-section="experience">Experiência</a></li>
+						<li><a href="#" data-nav-section="projects">Projetos</a></li>
+						<li><a href="#" data-nav-section="testimonials">Depoimentos</a></li>
 						<li><a href="#" data-nav-section="blog">Mais</a></li>
 						<li><a href="#" data-nav-section="contact">Contatos</a></li>
 					</ul>
 				</div>
 			</nav>
 
+			<div class="language-switcher" aria-label="Selecionar idioma">
+				<button class="language-btn active" type="button" data-lang="pt" onclick="setPortfolioLanguage('pt')">PT</button>
+				<button class="language-btn" type="button" data-lang="en" onclick="setPortfolioLanguage('en')">EN</button>
+			</div>
+			<div id="google_translate_element" aria-hidden="true"></div>
+
 			<div class="colorlib-footer">
-				<p><small>&copy; Leonardo <script>document.write(new Date().getFullYear());</script> Direitos reservados.</small></p>
+				<p><small>&copy; <strong>leotaborda</strong> <script>document.write(new Date().getFullYear());</script> Direitos reservados.</small></p>
 				<ul>
 					<li><a href="https://www.instagram.com/_.taborda/" target="_blank"><i class="bi bi-instagram" style="color: cornflowerblue;"></i></a></li>
 					<li><a href="https://www.linkedin.com/in/leotaborda/" target="_blank"><i class="bi bi-linkedin" style="color: cornflowerblue;"></i></a></li>
@@ -82,16 +94,16 @@
 			<section id="colorlib-hero" class="js-fullheight" data-section="home">
 				<div class="flexslider js-fullheight">
 					<ul class="slides">
-				   	<li style="background-image: url(images/background-01-apresentação.jpg);">
+				   	<li style="background-image: url(images/bg-01.jpg);">
 				   		<div class="overlay"></div>
 				   		<div class="container-fluid">
 				   			<div class="row">
 					   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 col-sm-12 col-xs-12 js-fullheight slider-text">
 					   				<div class="slider-text-inner js-fullheight">
 					   					<div class="desc">
-						   					<h1 style="color: rgb(1, 0, 77);">Olá! <br>Eu sou Leonardo Taborda</h1>
-						   					<h2 style="color: rgb(1, 0, 77); font-weight: bold">Possuo algumas experiências. Faça o download do meu currículo para saber mais.<h2>
-												<p><a href="curriculo-leonardo-taborda.pdf" class="btn btn-primary btn-learn"  style="color: rgb(1, 0, 77);" download>Download CV <i class="icon-download4"></i></a></p>
+						   					<h1 style="color: rgb(255, 255, 255);">Olá! <br>Eu sou Leonardo Taborda</h1>
+						   					<h2 style="color: rgb(255, 255, 255); font-weight: bold">Possuo algumas experiências. Faça o download do meu currículo para saber mais.<h2>
+												<p><a href="https://firebasestorage.googleapis.com/v0/b/portfolio-leotaborda.firebasestorage.app/o/files%2Fcurriculo.pdf?alt=media" class="btn btn-primary btn-learn"  style="color: rgb(255, 255, 255);" download>Download CV <i class="icon-download4"></i></a></p>
 											</div>
 					   				</div>
 					   			</div>
@@ -127,9 +139,9 @@
 									<div class="about-desc">
 										<span class="heading-meta">Sobre mim</span>
 										<h2 class="colorlib-heading">Quem sou eu?</h2>
-										<p><strong>Olá, meu nome é Leonardo Taborda</strong> atualmente trabalho como Meio Oficial em Soluções Digitais na Bosch Campinas. Sou formado em Desenvolvimento de Sistemas pelo SENAI 'Roberto Mange' e também estou cursando uma faculdade de Gestão de Energia e Eficiência Energética na FATEC Campinas.</p>
-										<p>Sempre fui apaixonado por aprender coisas novas, fora do trabalho e dos estudos, gosto de me aprofundar em meus conhecimentos de Design, além de gostar de praticar esportes e passar um tempo com minha familia. Bom, acredito que combinar diferentes habilidades, desde a parte técnica até a experiência do usuário, é o que permite enxergar soluções inovadoras e funcionais para os desafios do dia a dia.</p>
-										<p>Estou sempre em busca de me desenvolver e adquirir novos conhecimentos!</p>
+										<p><strong>Olá, meu nome é Leonardo Taborda</strong> trabalho como Meio Oficial em Soluções Digitais na Bosch Campinas atuando como desenvolvedor FrontEnd. Sou formado em Desenvolvimento de Sistemas pelo SENAI 'Roberto Mange' e também estou cursando uma faculdade de Gestão de Energia e Eficiência Energética na FATEC Campinas.</p>
+										<p>Tenho experiência prática em desenvolvimento Front End, automação de processos e design UX/UI. Gosto de unir técnica e criatividade para entregar soluções funcionais e inovadoras. Acredito que a combinação entre visão estratégica e foco no usuário é o caminho para gerar impacto real.</p>
+										<p>Fora do trabalho, me interesso por viagens, esportes e tudo que estimule minha curiosidade. Estou sempre em busca de evoluir e construir algo relevante!</p>
 									</div>
 								</div>
 							</div>
@@ -162,8 +174,8 @@
 							<div class="row">
 								<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
 									<div class="hire">
-										<h2>É um prazer te conhecer! <br>Obtive algumas experiências em minha trajetória. Venha conhecer!</h2>
-										<a href="portfolio-leonardo-taborda-DOC.pdf" class="btn-hire" download>Download Portifolio</a>
+										<h2>É um prazer te conhecer! <br>Obtive algumas experiências em minha trajetória. Deseja compartilhar? Faça o Download!!</h2>
+										<a href="https://firebasestorage.googleapis.com/v0/b/portfolio-leotaborda.firebasestorage.app/o/files%2Fportfolio.pdf?alt=media" class="btn-hire" download>Download Portifolio</a>
 									</div>
 								</div>
 							</div>
@@ -179,7 +191,7 @@
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
 							<span class="heading-meta">O que faço?</span>
-							<h2 class="colorlib-heading">Aqui estão algumas das minhas experiências.</h2>
+							<h2 class="colorlib-heading">Algumas das minhas experiências.</h2>
 						</div>
 					</div>
 					<div class="row row-pt-md">
@@ -197,11 +209,11 @@
 						<div class="col-md-4 text-center animate-box">
 							<div class="services color-2">
 								<span class="icon">
-									<i class="icon-data"></i>
+									<i class="bi bi-code-slash"></i>
 								</span>
 								<div class="desc">
-									<h3>Desenvolvimento de Software</h3>
-									<p>Criação de software de alta performance, focado em automação de processos e melhoria contínua.</p>
+									<h3>Desenvolvimento Web Software</h3>
+									<p>Criação de soluções web modernas, responsivas e funcionais, com foco em desempenho, usabilidade e boas práticas de desenvolvimento.</p>
 								</div>
 							</div>
 						</div>
@@ -244,7 +256,7 @@
 									<i class="bi bi-chat-dots"></i>
 								</span>
 								<div class="desc">
-									<h3>Comunicação</h3>
+									<h3>Gestão & Comunicação</h3>
 									<p>Desenvolvimento de estratégias de comunicação que fortalecem o posicionamento da marca, geram conexão autêntica com o público e ampliam o alcance da mensagem.</p>
 								</div>
 							</div>
@@ -260,11 +272,11 @@
 					</div>
 					<div class="row">
 						<div class="col-md-3 text-center animate-box">
-							<span class="colorlib-counter js-counter" data-from="0" data-to="4500" data-speed="2000" data-refresh-interval="50"></span>
-							<span class="colorlib-counter-label">Horas de Estudos</span>
+							<span class="colorlib-counter js-counter" data-from="0" data-to="2" data-speed="2000" data-refresh-interval="50"></span>
+							<span class="colorlib-counter-label">Anos de Prática</span>
 						</div>
 						<div class="col-md-3 text-center animate-box">
-							<span class="colorlib-counter js-counter" data-from="0" data-to="3" data-speed="2000" data-refresh-interval="50"></span>
+							<span class="colorlib-counter js-counter" data-from="0" data-to="7" data-speed="2000" data-refresh-interval="50"></span>
 							<span class="colorlib-counter-label">Projetos realizados</span>
 						</div>
 						<div class="col-md-3 text-center animate-box">
@@ -289,7 +301,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-							<p>Estou sempre em busca de novos desafios e oportunidades para crescer. Já acumulei experiência em soluções digitais na Bosch Campinas, onde desenvolvi uma forte base em <span style="font-weight: 700;">Programação Front End</span> e <span style="font-weight: 700;">Design</span>. Me formei recentemente em Desenvolvimento de Sistemas no SENAI "Roberto Mange" e Gestão de Energia e Eficiência Energética na FATEC Campinas.</p>
+							<p>Estou sempre em busca de novos desafios e oportunidades para crescer. Já acumulei experiência em soluções digitais na Bosch Campinas, onde desenvolvi uma forte base em <strong>Desenvolvimento FrontEnd</strong> e <strong>Design</strong>. Me formei recentemente em Desenvolvimento de Sistemas no SENAI "Roberto Mange" e Gestão de Energia e Eficiência Energética na FATEC Campinas.</p>
 
 							Além disso, tenho experiências em Modelagem 3D, buscando sempre criar experiências intuitivas e agradáveis para os usuários. Sempre procuro aplicar meus conhecimentos para contribuir em projetos inovadores que façam a diferença.</p>
 						</div>
@@ -339,7 +351,7 @@
 						</div>
 						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
 							<div class="progress-wrap">
-								<h3>Gestão de Energia</h3>
+								<h3>Energia e Eficiência Energética</h3>
 								<div class="progress">
 								 	<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
 								  	aria-valuemin="0" aria-valuemax="100" style="width:75%">
@@ -385,14 +397,15 @@
 									    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 									         <div class="panel-body">
 									            <div class="row">
-										      		<div class="col-md-6">
-										      			<p>Formado como Técnico em Informática, desenvolvi habilidades em programação, manutenção de sistemas e suporte técnico, </p>
-										      		</div>
-										      		<div class="col-md-6">
-										      			<p>preparando-me para enfrentar os desafios do mundo digital. Conheça mais sobre o Campos:</p>
-										      		</div>
+										      		<div class="col-md-6"> 
+														<p> Concluí o curso Técnico em Informática integrado ao Ensino Médio no UNASP Campus Hortolândia, desenvolvendo conhecimentos em programação, sistemas operacionais, redes de computadores, manutenção de microcomputadores, suporte técnico e desenvolvimento de aplicativos. </p> 
+													</div> 
+													<div class="col-md-6"> 
+														<p> A formação também contribuiu para o desenvolvimento de habilidades profissionais, como resolução de problemas, trabalho em equipe, pensamento lógico e responsabilidade na aplicação da tecnologia no mundo do trabalho.</p> 
+													</div>
+													<img src="https://cdn.unasp.br/unasp-colegio/2020/09/aSDFGHJKL%C3%87L-1.jpg" alt="Colégio Adventista UNASP Campus Hortolândia - Técnico em Informática" class="image-form">
 										      	</div>
-												<a href="https://unasp.br/cursos/ht/">Ver mais</a>
+												<span>Conheça mais sobre o curso e sobre o Campos: </span><a href="https://unasp.br/cursos/ht/">Ver mais</a>
 									         </div>
 									    </div>
 									</div>
@@ -412,17 +425,33 @@
 									    </div>
 									</div>
 									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingThree">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Gestão de Energia e Eficiência Energética - FATEC Campinas</a>
-									        </h4>
-									    </div>
-									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-									        <div class="panel-body">
-									            <p>Estou cursando <span style="font-weight: 700;">Gestão de Energia e Eficiência Energética</span> na FATEC Campinas, onde aprendo a aplicar práticas sustentáveis e a melhoria do uso de recursos energéticos. Conheça um pouco mais sobre meu curso e a Fatec Campinas:</p>	
-												<a href="https://fateccampinas.edu.br/site/curso_geee/">Ver mais</a>
-									        </div>
-									    </div>
+										<div class="panel-heading" role="tab" id="headingThree">
+											<h4 class="panel-title">
+												<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+													Gestão de Energia e Eficiência Energética - FATEC Campinas
+												</a>
+											</h4>
+										</div>
+
+										<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+											<div class="panel-body">
+												<p>
+													Atualmente curso <span style="font-weight: 700;">Gestão de Energia e Eficiência Energética</span> na FATEC Campinas, uma formação superior tecnológica voltada ao uso inteligente da energia, sustentabilidade, eficiência operacional e gestão estratégica de recursos energéticos.
+												</p>
+
+												<p>
+													Durante a graduação, desenvolvo conhecimentos em eficiência energética, energias renováveis, qualidade de energia, mercado e regulamentação do setor elétrico, análise econômica, gestão de projetos e tomada de decisão baseada em indicadores.
+												</p>
+												<img src="https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/1/2020/10/50603700_1022920661249010_7753951879649820672_n.jpg" alt="Fatec Campinas - Gestão de Energia e Eficiência Energética" class="image-form">
+												<p>
+													Essa formação contribui para minha capacidade de analisar cenários, propor melhorias, reduzir desperdícios e desenvolver soluções que unem tecnologia, economia e impacto ambiental positivo.
+												</p>
+
+												<a href="https://fateccampinas.edu.br/site/curso_geee/" target="_blank" rel="noopener noreferrer">
+													Conheça mais sobre o curso
+												</a>
+											</div>
+										</div>
 									</div>
 
 									<div class="panel panel-default">
@@ -442,6 +471,7 @@
 													<li>IoT (Internet das Coisas) aplicada à Indústria</li>
 													<li>Trabalho com diferentes Sistemas Operacionais</li>
 												</ul>
+												<img src="https://media.licdn.com/dms/image/v2/D4D22AQEqdboSit_zqg/feedshare-shrink_1280/B4DZfG5NEHHAAo-/0/1751388574969?e=1782345600&v=beta&t=bp1KqIXBvPRA7LMt4iF6LVFxMkg81kxDBELlsz8euTQ" alt="Formatura SENAI - Desenvolvimento de Sistemas" class="image-form">
 												<p>Conheça mais sobre o SENAI "Roberto Mange" e explore seus cursos disponíveis, clique em "Ver mais".</p>
 												<a href="https://sp.senai.br/unidade/campinas/">Ver mais</a>
 									        </div>
@@ -483,11 +513,11 @@
 					<div class="row">
 						<div class="col-md-12">
 				         <div class="timeline-centered">
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
+					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
 					            <div class="timeline-entry-inner">
 
 					               <div class="timeline-icon color-1">
-					                  <i class="icon-pen2"></i>
+					                  <i class="bi bi-bookmark-fill"></i>
 					               </div>
 
 					               <div class="timeline-label">
@@ -498,10 +528,10 @@
 					         </article>
 
 
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
+					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
 					            <div class="timeline-entry-inner">
 					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
+					                  <i class="bi bi-bookmark-fill"></i>
 					               </div>
 					               <div class="timeline-label">
 					               	<h2><a href="#">Técnico em Informática no UNASP Campus Hortolândia</a> <span>2020 - 2022</span></h2>
@@ -510,10 +540,10 @@
 					            </div>
 					         </article>
 
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
+					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
 					            <div class="timeline-entry-inner">
 					               <div class="timeline-icon color-3">
-					                  <i class="icon-pen2"></i>
+					                  <i class="bi bi-bookmark-fill"></i>
 					               </div>
 					               <div class="timeline-label">
 					               	<h2><a href="#">Gestão de Energia e Eficiência Energética na FATEC Campinas</a> <span>2023 - 2025</span></h2>
@@ -525,7 +555,7 @@
 					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
 					            <div class="timeline-entry-inner">
 					               <div class="timeline-icon color-4">
-					                  <i class="icon-pen2"></i>
+					                  <i class="bi bi-bookmark-fill"></i>
 					               </div>
 					               <div class="timeline-label">
 					               	<h2><a href="#">Bosch Campinas como Aprendiz de Soluções Digitais</a> <span> 2024 - 2025</span></h2>
@@ -534,10 +564,10 @@
 					            </div>
 					         </article>
 
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
+					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
 					            <div class="timeline-entry-inner">
 					               <div class="timeline-icon color-5">
-					                  <i class="icon-pen2"></i>
+					                  <i class="bi bi-bookmark-fill"></i>
 					               </div>
 					               <div class="timeline-label">
 					               	<h2><a href="#">Desenvolvimento de Sistemas no SENAI</a> <span>2024 - 2025</span></h2>
@@ -546,19 +576,19 @@
 					            </div>
 					         </article>
 
-							 <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
+							 <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
 					            <div class="timeline-entry-inner">
 					               <div class="timeline-icon color-6">
-					                  <i class="icon-pen2"></i>
+					                  <i class="bi bi-bookmark-fill"></i>
 					               </div>
 					               <div class="timeline-label">
 					               	<h2><a href="#">Meio Oficial em Soluções Digitais na Bosch Campinas</a> <span>2025 - </span></h2>
-					                  <p>Atualmente, estou me formando em Desenvolvimento de Sistemas no SENAI, onde estou aprimorando minhas habilidades em programação e desenvolvimento de software. </p>
+					                  <p>Atuei como desenvolvedor FrontEnd com projetos em Angular e React com Typescript, com integrações ao Keycloak para autenticação e gerenciamentos de roles.</p>
 					               </div>
 					            </div>
 					         </article>
 
-					         <article class="timeline-entry begin animate-box" data-animate-effect="fadeInBottom">
+					         <article class="timeline-entry begin animate-box" data-animate-effect="fadeInTop">
 					            <div class="timeline-entry-inner">
 					               <div class="timeline-icon color-none">
 					               </div>
@@ -567,6 +597,107 @@
 					      </div>
 					   </div>
 				   </div>
+				</div>
+			</section>
+
+			<section class="colorlib-projects" data-section="projects">
+				<div class="colorlib-narrow-content">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+							<span class="heading-meta">Projetos</span>
+							<h2 class="colorlib-heading">Projetos em destaque</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
+							<div class="project-card">
+								<div class="project-icon color-1">
+									<i class="bi bi-window-sidebar"></i>
+								</div>
+								<span class="project-category">Front-End</span>
+								<h3>Leading Page Bosch</h3>
+								<p>Página de divulgação para o projeto Bosch Smart Mine com formulário para comunicação.</p>
+								<div class="project-tags">
+									<span>Angular</span>
+									<span>Strapi</span>
+								</div>
+								<a href="https://bosch-smartmine.com.br/" class="project-link">Ver projeto <i class="bi bi-arrow-up-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInTop">
+							<div class="project-card">
+								<div class="project-icon color-2">
+									<i class="bi bi-box"></i>
+								</div>
+								<span class="project-category">Front-end</span>
+								<h3>Hero 3D</h3>
+								<p>Página simples com Hero integrado com Spline para modelo 3D.</p>
+								<div class="project-tags">
+									<span>3D Model</span>
+									<span>Spline</span>
+								</div>
+								<a href="https://3d-website-gold-mu.vercel.app/" class="project-link">Ver projeto <i class="bi bi-arrow-up-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
+							<div class="project-card">
+								<div class="project-icon color-3">
+									<i class="bi bi-dice-6"></i>
+								</div>
+								<span class="project-category">Front-end</span>
+								<h3>Sorteador Web</h3>
+								<p>Sorteador simples com vários modos para atender diversos temas.</p>
+								<div class="project-tags">
+									<span>Javascript</span>
+									<span>Lucky</span>
+								</div>
+								<a href="https://luckydraw.com.br/," class="project-link">Ver projeto <i class="bi bi-arrow-up-right"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="colorlib-testimonials" data-section="testimonials">
+				<div class="colorlib-narrow-content">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+							<span class="heading-meta">Depoimentos</span>
+							<h2 class="colorlib-heading">O que dizem sobre mim</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
+							<div class="testimonial-card">
+								<i class="bi bi-quote testimonial-quote"></i>
+								<p>"Leonardo demonstrou muita dedicação, organização e criatividade no desenvolvimento das entregas."</p>
+								<div class="testimonial-author">
+									<strong>Nome da Pessoa</strong>
+									<span>Cargo ou empresa</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInTop">
+							<div class="testimonial-card">
+								<i class="bi bi-quote testimonial-quote"></i>
+								<p>"Conseguiu transformar ideias em interfaces funcionais, com atenção aos detalhes e boa comunicação."</p>
+								<div class="testimonial-author">
+									<strong>Nome da Pessoa</strong>
+									<span>Cargo ou empresa</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
+							<div class="testimonial-card">
+								<i class="bi bi-quote testimonial-quote"></i>
+								<p>"Trabalhou bem em equipe, trouxe soluções práticas e manteve foco na experiência do usuário."</p>
+								<div class="testimonial-author">
+									<strong>Nome da Pessoa</strong>
+									<span>Cargo ou empresa</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -591,11 +722,11 @@
 						</div>
 						<div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
 							<div class="blog-entry">
-								<a href="https://fateccampinas.edu.br/site/curso_geee/" class="blog-img"><img src="https://fateccampinas.edu.br/site/wp-content/uploads/2025/06/Logo_Fatec.png" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com" width="800px" height="533px" style="padding: 25px 25px;"></a>
+								<a href="https://fateccampinas.edu.br/site/curso_geee/" class="blog-img"><img src="https://fateccampinas.com.br/portal/wp-content/uploads/2026/03/Logo_Fatec.png" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com" width="800px" height="533px" style="padding: 25px 25px;"></a>
 								<div class="desc">
 									<span><small>24 de Julho, 2025</small> | <small> Curso na Fatec Campinas </small> | <small> <i class="bi bi-star"></i></small></span>
-									<h3><a href="blog.html">Gestão de Energia e Eficiência Energética na Fatec Campinas</a></h3>
-									<p>Veja mais sobre o curso de G3'E.</p>
+									<h3><a href="blog.html">Gestão de Energia e Eficiência Energética</a></h3>
+									<p>Veja mais sobre o curso na Fatec Campinas de G3'E.</p>
 								</div>
 							</div>
 						</div>
@@ -685,7 +816,7 @@
 									<i class="icon-phone"></i>
 								</div>
 								<div class="colorlib-text">
-									<p><a href="tel://">+55 (19) 98973-1191</a></p>
+									<p><a href="https://wa.me/5519994272241" target="_blank" rel="noopener">+55 (19) 99427-2241</a></p>
 								</div>
 							</div>
 						</div>
@@ -735,62 +866,590 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.countTo.js"></script>
 	<script src="js/main.js"></script>
-
 	<script>
-		document.getElementById("contactForm").addEventListener("submit", function(event) {
-        event.preventDefault();
+		(function () {
+			const loader = document.getElementById("pageLoader");
+			const loaderText = document.getElementById("pageLoaderText");
+			const translationCachePrefix = "portfolioTranslation:";
+			const translationTimeoutMs = 2200;
+			const loaderTimeoutMs = 6500;
+			const excludedSelectors = [
+				"script",
+				"style",
+				"noscript",
+				"iframe",
+				"svg",
+				"canvas",
+				"#pageLoader",
+				".language-switcher",
+				".notranslate"
+			].join(",");
+			let hideTimer;
+			let translateTimer;
+			let loaderSafetyTimer;
 
-        const nome = document.querySelector('input[name="nome"]').value;
-        const email = document.querySelector('input[name="email"]').value;
-        const titulo = document.querySelector('input[name="titulo"]').value;
-        const mensagem = document.querySelector('textarea[name="mensagem"]').value;
+			window.showPageLoader = function (text) {
+				if (!loader) return;
+				if (loaderText && text) loaderText.textContent = text;
+				clearTimeout(hideTimer);
+				clearTimeout(loaderSafetyTimer);
+				loader.classList.remove("page-loader-hidden");
+				loader.setAttribute("aria-busy", "true");
+				loaderSafetyTimer = setTimeout(window.hidePageLoader, loaderTimeoutMs);
+			};
 
-        fetch("/send-message", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ nome, email, titulo, mensagem })
-        })
-        .then(response => response.text())
-        .then(data => {
-            alert(data);
-			location.reload(); 
-        })
-        .catch(error => {
-            alert("Erro ao enviar a mensagem, tente novamente.");
-        });
-    });
+			window.hidePageLoader = function () {
+				if (!loader) return;
+				clearTimeout(loaderSafetyTimer);
+				hideTimer = setTimeout(() => {
+					loader.classList.add("page-loader-hidden");
+					loader.setAttribute("aria-busy", "false");
+				}, 180);
+			};
 
-	document.addEventListener("DOMContentLoaded", function() {
-        const tituloInput = document.querySelector('input[name="titulo"]');
-        const mensagemTextarea = document.querySelector('textarea[name="mensagem"]');
-        const tituloCount = document.getElementById('titulo-count');
-        const mensagemCount = document.getElementById('mensagem-count');
+			window.setLanguageButtons = function (lang) {
+				document.querySelectorAll(".language-btn").forEach((btn) => {
+					btn.classList.toggle("active", btn.dataset.lang === lang);
+				});
+			};
 
-        function updateCount() {
-            const tituloLength = tituloInput.value.length;
-            const mensagemLength = mensagemTextarea.value.length;
-            tituloCount.textContent = `${50 - tituloLength} caracteres restantes`;
-            mensagemCount.textContent = `${500 - mensagemLength} caracteres restantes`;
-        }
+			window.setPortfolioLanguage = async function (lang) {
+				localStorage.setItem("portfolioLanguage", lang);
+				window.setLanguageButtons(lang);
+				window.showPageLoader(lang === "en" ? "Translating..." : "Carregando...");
+				await withTimeout(applyPortfolioLanguage(lang), loaderTimeoutMs - 500);
+				window.hidePageLoader();
+			};
 
-        tituloInput.addEventListener('input', updateCount);
-        mensagemTextarea.addEventListener('input', updateCount);
+			window.translateDynamicContent = function () {
+				const lang = localStorage.getItem("portfolioLanguage") || "pt";
+				window.setLanguageButtons(lang);
+				clearTimeout(translateTimer);
+				translateTimer = setTimeout(() => applyPortfolioLanguage(lang, false), 120);
+			};
 
-        updateCount();
-    });
+			async function applyPortfolioLanguage(lang, showLoader = false) {
+				if (showLoader) window.showPageLoader(lang === "en" ? "Translating..." : "Carregando...");
+
+				if (lang === "pt") {
+					restoreOriginalContent(document.body);
+					if (showLoader) window.hidePageLoader();
+					return;
+				}
+
+				await Promise.all([
+					translateTextNodes(document.body, lang),
+					translateElementAttributes(document.body, lang)
+				]);
+
+				if (showLoader) window.hidePageLoader();
+			}
+
+			function restoreOriginalContent(root) {
+				root.querySelectorAll("[data-original-placeholder]").forEach((el) => {
+					el.setAttribute("placeholder", el.dataset.originalPlaceholder);
+				});
+
+				root.querySelectorAll("[data-original-value]").forEach((el) => {
+					el.value = el.dataset.originalValue;
+				});
+
+				const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+					acceptNode(node) {
+						if (!shouldTranslateTextNode(node)) return NodeFilter.FILTER_REJECT;
+						return NodeFilter.FILTER_ACCEPT;
+					}
+				});
+
+				const nodes = [];
+				while (walker.nextNode()) nodes.push(walker.currentNode);
+				nodes.forEach((node) => {
+					if (node.__portfolioOriginalText) node.nodeValue = node.__portfolioOriginalText;
+				});
+			}
+
+			async function translateTextNodes(root, targetLang) {
+				const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+					acceptNode(node) {
+						if (!shouldTranslateTextNode(node)) return NodeFilter.FILTER_REJECT;
+						return NodeFilter.FILTER_ACCEPT;
+					}
+				});
+
+				const nodes = [];
+				while (walker.nextNode()) nodes.push(walker.currentNode);
+
+				await runLimited(nodes, 8, async (node) => {
+					if (!node.__portfolioOriginalText) node.__portfolioOriginalText = node.nodeValue;
+					const original = node.__portfolioOriginalText;
+					node.nodeValue = await translateText(original, targetLang);
+				});
+			}
+
+			async function translateElementAttributes(root, targetLang) {
+				const elements = Array.from(root.querySelectorAll("input[placeholder], textarea[placeholder], input[type='submit'], input[type='button']"))
+					.filter((el) => !el.closest(excludedSelectors));
+
+				await runLimited(elements, 6, async (el) => {
+					if (el.placeholder) {
+						if (!el.dataset.originalPlaceholder) el.dataset.originalPlaceholder = el.placeholder;
+						el.placeholder = await translateText(el.dataset.originalPlaceholder, targetLang);
+					}
+
+					if ((el.type === "submit" || el.type === "button") && el.value) {
+						if (!el.dataset.originalValue) el.dataset.originalValue = el.value;
+						el.value = await translateText(el.dataset.originalValue, targetLang);
+					}
+				});
+			}
+
+			function shouldTranslateTextNode(node) {
+				if (!node.nodeValue || !node.nodeValue.trim()) return false;
+				if (node.parentElement && node.parentElement.closest(excludedSelectors)) return false;
+				if (/^[\s\d.,:;!?()&|+\-/%#@]+$/.test(node.nodeValue)) return false;
+				return true;
+			}
+
+			async function translateText(text, targetLang) {
+				const normalized = String(text).replace(/\s+/g, " ").trim();
+				if (!normalized) return text;
+
+				const cacheKey = `${translationCachePrefix}${targetLang}:${normalized}`;
+				const cached = localStorage.getItem(cacheKey);
+				if (cached) return preserveSpacing(text, cached);
+
+				try {
+					const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=${encodeURIComponent(targetLang)}&dt=t&q=${encodeURIComponent(normalized)}`;
+					const response = await fetchWithTimeout(url, translationTimeoutMs);
+					if (!response.ok) throw new Error("Translation request failed");
+					const data = await response.json();
+					const translated = data[0].map((part) => part[0]).join("");
+					localStorage.setItem(cacheKey, translated);
+					return preserveSpacing(text, translated);
+				} catch (err) {
+					console.warn("Translation failed:", err);
+					return text;
+				}
+			}
+
+			async function runLimited(items, limit, worker) {
+				let index = 0;
+				const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
+					while (index < items.length) {
+						const item = items[index++];
+						await worker(item);
+					}
+				});
+				await Promise.all(runners);
+			}
+
+			async function fetchWithTimeout(url, timeoutMs) {
+				const controller = new AbortController();
+				const timer = setTimeout(() => controller.abort(), timeoutMs);
+				try {
+					return await fetch(url, { signal: controller.signal });
+				} finally {
+					clearTimeout(timer);
+				}
+			}
+
+			function withTimeout(promise, timeoutMs) {
+				return Promise.race([
+					promise,
+					new Promise((resolve) => setTimeout(resolve, timeoutMs))
+				]);
+			}
+
+			function preserveSpacing(original, translated) {
+				const leading = original.match(/^\s*/)[0];
+				const trailing = original.match(/\s*$/)[0];
+				return `${leading}${translated}${trailing}`;
+			}
+
+			window.addEventListener("load", () => {
+				const lang = localStorage.getItem("portfolioLanguage") || "pt";
+				window.setLanguageButtons(lang);
+				withTimeout(applyPortfolioLanguage(lang, lang !== "pt"), loaderTimeoutMs - 500).finally(() => {
+					setTimeout(window.hidePageLoader, 350);
+				});
+			});
+		})();
 	</script>
 
-	</body>
-	<!-- Modal -->
-	<div id="successModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
-		<div class="modal-content">
-			<button class="close-btn" aria-label="Fechar modal">&times;</button>
-			<div class="modal-icon">✅</div>
-			<h2 id="modalTitle">Mensagem enviada com sucesso!</h2>
+	<!-- Firebase: contact form writes directly to Firestore -->
+	<script type="module">
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+		import {
+			getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy
+		} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+		import { firebaseConfig } from "/js/firebase-config.js";
+
+		const app = initializeApp(firebaseConfig);
+		const db = getFirestore(app);
+		let portfolioProjects = [];
+		let projectPage = 0;
+		let projectDirection = 0;
+		let testimonialComments = [];
+		let testimonialPage = 0;
+		let testimonialDirection = 0;
+
+		setupProjects();
+		setupTestimonials();
+		window.addEventListener("resize", debounce(() => {
+			renderProjects();
+			renderTestimonials();
+		}, 150));
+
+		document.getElementById("contactForm").addEventListener("submit", async function(event) {
+			event.preventDefault();
+
+			const nome = document.querySelector('input[name="nome"]').value.trim();
+			const email = document.querySelector('input[name="email"]').value.trim();
+			const titulo = document.querySelector('input[name="titulo"]').value.trim();
+			const mensagem = document.querySelector('textarea[name="mensagem"]').value.trim();
+
+			const submitBtn = this.querySelector('input[type="submit"]');
+			submitBtn.disabled = true;
+			submitBtn.value = "Enviando...";
+
+			try {
+				await addDoc(collection(db, "messages"), {
+					nome,
+					email,
+					titulo,
+					mensagem,
+					timestamp: serverTimestamp(),
+				});
+
+				showSuccessModal();
+				this.reset();
+				updateCount();
+			} catch (err) {
+				console.error(err);
+				alert("Erro ao enviar a mensagem, tente novamente.");
+			} finally {
+				submitBtn.disabled = false;
+				submitBtn.value = "Enviar Mensagem";
+			}
+		});
+
+		function setupProjects() {
+			const projectRow = document.querySelector(".colorlib-projects .colorlib-narrow-content > .row:nth-of-type(2)");
+			if (!projectRow) return;
+
+			projectRow.className = "project-carousel-row animate-box";
+			projectRow.setAttribute("data-animate-effect", "fadeInLeft");
+			projectRow.innerHTML = `
+				<button class="carousel-nav project-prev" id="projectPrev" type="button" aria-label="Projetos anteriores">
+					<i class="bi bi-chevron-left"></i>
+				</button>
+				<div class="carousel-window">
+					<div class="project-track" id="portfolioProjects">
+						<div class="project-empty">Carregando projetos...</div>
+					</div>
+				</div>
+				<button class="carousel-nav project-next" id="projectNext" type="button" aria-label="Proximos projetos">
+					<i class="bi bi-chevron-right"></i>
+				</button>
+			`;
+
+			document.getElementById("projectPrev").addEventListener("click", () => {
+				projectDirection = -1;
+				projectPage = Math.max(0, projectPage - 1);
+				renderProjects();
+			});
+
+			document.getElementById("projectNext").addEventListener("click", () => {
+				const projectsPerPage = getCarouselPageSize();
+				const maxPage = Math.max(0, Math.ceil(portfolioProjects.length / projectsPerPage) - 1);
+				projectDirection = 1;
+				projectPage = Math.min(maxPage, projectPage + 1);
+				renderProjects();
+			});
+
+			const q = query(collection(db, "projects"), orderBy("ordem", "asc"));
+			onSnapshot(q, (snapshot) => {
+				portfolioProjects = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+				projectPage = 0;
+				projectDirection = 0;
+				renderProjects();
+			}, (err) => {
+				console.error(err);
+				const track = document.getElementById("portfolioProjects");
+				const prev = document.getElementById("projectPrev");
+				const next = document.getElementById("projectNext");
+				if (track) track.innerHTML = `<div class="project-empty">Projetos indisponiveis no momento.</div>`;
+				if (prev) prev.disabled = true;
+				if (next) next.disabled = true;
+			});
+		}
+
+		function renderProjects() {
+			const projectTrack = document.getElementById("portfolioProjects");
+			const prev = document.getElementById("projectPrev");
+			const next = document.getElementById("projectNext");
+			if (!projectTrack || !prev || !next) return;
+
+			if (portfolioProjects.length === 0) {
+				projectTrack.innerHTML = `<div class="project-empty">Nenhum projeto cadastrado ainda.</div>`;
+				prev.disabled = true;
+				next.disabled = true;
+				return;
+			}
+
+			const projectsPerPage = getCarouselPageSize();
+			const maxPage = Math.max(0, Math.ceil(portfolioProjects.length / projectsPerPage) - 1);
+			projectPage = Math.min(projectPage, maxPage);
+			const visibleProjects = portfolioProjects.slice(
+				projectPage * projectsPerPage,
+				projectPage * projectsPerPage + projectsPerPage
+			);
+
+			setCarouselContent(projectTrack, visibleProjects.map((project, index) => {
+				const absoluteIndex = projectPage * projectsPerPage + index;
+				const color = `color-${(absoluteIndex % 6) + 1}`;
+				const icon = normalizeIcon(project.icone);
+				const tags = normalizeTags(project.tags);
+
+				return `
+					<article class="project-card">
+						<div class="project-icon ${color}">
+							<i class="bi ${escapeHtml(icon)}"></i>
+						</div>
+						<span class="project-category">${escapeHtml(project.categoria)}</span>
+						<h3>${escapeHtml(project.titulo)}</h3>
+						<p>${escapeHtml(project.descricao)}</p>
+						${tags.length ? `<div class="project-tags">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
+						<a href="${escapeHtml(project.link)}" class="project-link" target="_blank" rel="noopener">Ver projeto <i class="bi bi-arrow-up-right"></i></a>
+					</article>
+				`;
+			}).join(""), projectDirection);
+
+			projectDirection = 0;
+
+			prev.disabled = projectPage === 0;
+			next.disabled = projectPage >= maxPage;
+			if (window.translateDynamicContent) window.translateDynamicContent();
+		}
+
+		function setupTestimonials() {
+			const testimonialRow = document.querySelector(".colorlib-testimonials .colorlib-narrow-content > .row:nth-of-type(2)");
+			if (!testimonialRow) return;
+
+			testimonialRow.className = "testimonial-carousel-row animate-box";
+			testimonialRow.setAttribute("data-animate-effect", "fadeInLeft");
+			testimonialRow.innerHTML = `
+				<button class="testimonial-nav testimonial-prev" id="testimonialPrev" type="button" aria-label="Depoimentos anteriores">
+					<i class="bi bi-chevron-left"></i>
+				</button>
+				<div class="testimonial-window">
+					<div class="testimonial-track" id="testimonialTrack">
+						<div class="testimonial-loading">Carregando depoimentos...</div>
+					</div>
+				</div>
+				<button class="testimonial-nav testimonial-next" id="testimonialNext" type="button" aria-label="Proximos depoimentos">
+					<i class="bi bi-chevron-right"></i>
+				</button>
+			`;
+
+			document.getElementById("testimonialPrev").addEventListener("click", () => {
+				testimonialDirection = -1;
+				testimonialPage = Math.max(0, testimonialPage - 1);
+				renderTestimonials();
+			});
+
+			document.getElementById("testimonialNext").addEventListener("click", () => {
+				const testimonialsPerPage = getCarouselPageSize();
+				const maxPage = Math.max(0, Math.ceil(testimonialComments.length / testimonialsPerPage) - 1);
+				testimonialDirection = 1;
+				testimonialPage = Math.min(maxPage, testimonialPage + 1);
+				renderTestimonials();
+			});
+
+			const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+			onSnapshot(q, (snapshot) => {
+				testimonialComments = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+				testimonialPage = 0;
+				testimonialDirection = 0;
+				renderTestimonials();
+			}, (err) => {
+				console.error(err);
+				testimonialComments = [];
+				const track = document.getElementById("testimonialTrack");
+				const prev = document.getElementById("testimonialPrev");
+				const next = document.getElementById("testimonialNext");
+				if (track) track.innerHTML = `<div class="testimonial-empty">Depoimentos indisponiveis no momento.</div>`;
+				if (prev) prev.disabled = true;
+				if (next) next.disabled = true;
+			});
+		}
+
+		function renderTestimonials() {
+			const track = document.getElementById("testimonialTrack");
+			const prev = document.getElementById("testimonialPrev");
+			const next = document.getElementById("testimonialNext");
+			if (!track || !prev || !next) return;
+
+			if (testimonialComments.length === 0) {
+				track.innerHTML = `<div class="testimonial-empty">Nenhum depoimento cadastrado ainda.</div>`;
+				prev.disabled = true;
+				next.disabled = true;
+				return;
+			}
+
+			const testimonialsPerPage = getCarouselPageSize();
+			const maxPage = Math.max(0, Math.ceil(testimonialComments.length / testimonialsPerPage) - 1);
+			testimonialPage = Math.min(testimonialPage, maxPage);
+			const visibleComments = testimonialComments.slice(
+				testimonialPage * testimonialsPerPage,
+				testimonialPage * testimonialsPerPage + testimonialsPerPage
+			);
+
+			setCarouselContent(track, visibleComments.map((comment) => {
+				const initials = getInitials(comment.nome);
+				const photo = comment.fotoUrl
+					? `<img src="${escapeHtml(comment.fotoUrl)}" alt="${escapeHtml(comment.nome)}" data-fallback="${escapeHtml(initials)}">`
+					: escapeHtml(initials);
+
+				return `
+					<article class="testimonial-card">
+						<div class="testimonial-avatar">${photo}</div>
+						<i class="bi bi-quote testimonial-quote"></i>
+						<p>"${escapeHtml(comment.comentario)}"</p>
+						<div class="testimonial-author">
+							<strong>${escapeHtml(comment.nome)}</strong>
+							<span>${escapeHtml(comment.cargo || "")}</span>
+						</div>
+					</article>
+				`;
+			}).join(""), testimonialDirection);
+
+			testimonialDirection = 0;
+
+			track.querySelectorAll("img[data-fallback]").forEach((img) => {
+				img.addEventListener("error", () => {
+					const parent = img.parentElement;
+					parent.textContent = img.dataset.fallback || "?";
+				}, { once: true });
+			});
+
+			prev.disabled = testimonialPage === 0;
+			next.disabled = testimonialPage >= maxPage;
+			if (window.translateDynamicContent) window.translateDynamicContent();
+		}
+
+		function setCarouselContent(track, html, direction) {
+			track.classList.remove("carousel-slide-next", "carousel-slide-prev");
+			track.innerHTML = html;
+
+			if (!direction || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+			requestAnimationFrame(() => {
+				track.classList.add(direction > 0 ? "carousel-slide-next" : "carousel-slide-prev");
+			});
+
+			track.addEventListener("animationend", () => {
+				track.classList.remove("carousel-slide-next", "carousel-slide-prev");
+			}, { once: true });
+		}
+
+		function getCarouselPageSize() {
+			return window.matchMedia("(max-width: 768px)").matches ? 1 : 2;
+		}
+
+		function debounce(fn, delay) {
+			let timeoutId;
+			return (...args) => {
+				clearTimeout(timeoutId);
+				timeoutId = setTimeout(() => fn(...args), delay);
+			};
+		}
+
+		function getInitials(name = "") {
+			const parts = String(name).trim().split(/\s+/).filter(Boolean);
+			if (parts.length === 0) return "?";
+			return parts.slice(0, 2).map((part) => part[0]).join("").toUpperCase();
+		}
+
+		function normalizeTags(tags) {
+			if (Array.isArray(tags)) return tags.filter(Boolean);
+			return String(tags || "")
+				.split(",")
+				.map((tag) => tag.trim())
+				.filter(Boolean);
+		}
+
+		function normalizeIcon(icon = "") {
+			const value = String(icon).trim();
+			if (!value) return "bi-window-sidebar";
+			return value.startsWith("bi-") ? value : `bi-${value}`;
+		}
+
+		function escapeHtml(str = "") {
+			return String(str)
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/"/g, "&quot;")
+				.replace(/'/g, "&#x27;");
+		}
+
+		function showSuccessModal() {
+			const modal = document.getElementById("successModal");
+			if (!modal) return;
+			modal.setAttribute("aria-hidden", "false");
+			// display: flex is handled by #successModal.show in CSS
+			requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add("show")));
+			// auto-close after 4 seconds
+			setTimeout(() => closeSuccessModal(), 4000);
+		}
+
+		function closeSuccessModal() {
+			const modal = document.getElementById("successModal");
+			if (!modal) return;
+			modal.classList.remove("show");
+			modal.setAttribute("aria-hidden", "true");
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+			// close on backdrop click
+			document.getElementById("successModal").addEventListener("click", function(e) {
+				if (e.target === this) closeSuccessModal();
+			});
+		});
+
+		function updateCount() {
+			const tituloInput = document.querySelector('input[name="titulo"]');
+			const mensagemTextarea = document.querySelector('textarea[name="mensagem"]');
+			const tituloCount = document.getElementById('titulo-count');
+			const mensagemCount = document.getElementById('mensagem-count');
+			if (tituloCount) tituloCount.textContent = `${50 - tituloInput.value.length} caracteres restantes`;
+			if (mensagemCount) mensagemCount.textContent = `${500 - mensagemTextarea.value.length} caracteres restantes`;
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+			const tituloInput = document.querySelector('input[name="titulo"]');
+			const mensagemTextarea = document.querySelector('textarea[name="mensagem"]');
+			tituloInput.addEventListener('input', updateCount);
+			mensagemTextarea.addEventListener('input', updateCount);
+			updateCount();
+		});
+	</script>
+
+	<!-- Modal de sucesso -->
+	<div id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+		<div class="success-card">
+			<div class="success-icon">
+				<svg class="checkmark" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+					<circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+					<path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+				</svg>
+			</div>
+			<h2 id="modalTitle">Mensagem enviada!</h2>
 			<p>Obrigado pelo contato. Em breve irei te retornar!</p>
 		</div>
 	</div>
+
+	</body>
 </html>
 

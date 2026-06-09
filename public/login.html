@@ -3,33 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <title>Login de Administrador</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="images/icons/admin-page-icon.png" />
     <style>
-      /* Variáveis de design */
       :root {
-        --color-bg: #f4f6f8;
-        --color-primary: #2f80ed;
-        --color-primary-hover: #1c6dd0;
+        --color-bg-from: #1f2d3d;
+        --color-bg-to: #2c3e50;
+        --color-primary: #6495ed;
+        --color-primary-hover: #4a7fd4;
         --color-white: #ffffff;
         --color-dark: #1a1a1a;
         --color-input-bg: #f9f9f9;
         --color-border: #d3d9df;
         --color-muted: #6c757d;
-
-        --font-family-base: "Poppins", sans-serif;
-
+        --font-family-base: "Quicksand", "Poppins", sans-serif;
         --radius-md: 12px;
         --radius-sm: 8px;
-
         --transition-fast: 0.2s ease-in-out;
         --transition-smooth: 0.4s ease;
       }
 
-      /* Reset */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -37,29 +31,26 @@
         font-family: var(--font-family-base);
       }
 
-      /* Background geral */
       body {
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background: linear-gradient(to right, #1f2d3d, #2c3e50);
+        background: linear-gradient(135deg, var(--color-bg-from), var(--color-bg-to));
         color: var(--color-dark);
         overflow: hidden;
         position: relative;
       }
 
-      /* Camada escura com blur */
       body::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(6px);
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(4px);
         z-index: 0;
       }
 
-      /* Partículas */
       .particles {
         position: absolute;
         width: 100%;
@@ -68,75 +59,109 @@
         z-index: 0;
       }
 
-      /* Container do formulário */
-      form {
+      .login-card {
         position: relative;
         background: var(--color-white);
         border-radius: var(--radius-md);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         padding: 2.5rem;
         width: 100%;
-        max-width: 380px;
+        max-width: 400px;
         z-index: 1;
         animation: fadeIn var(--transition-smooth);
       }
 
-      /* Título */
-      form h2 {
-        font-size: 1.8rem;
-        color: var(--color-dark);
-        margin-bottom: 0.5rem;
+      .login-brand {
+        text-align: center;
+        margin-bottom: 1.8rem;
       }
 
-      /* Subtexto */
-      .note {
-        font-size: 0.95rem;
+      .login-brand .brand-avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-image: url(images/perfil-leotaborda.JPEG);
+        background-size: cover;
+        background-position: center;
+        margin: 0 auto 0.8rem;
+        border: 3px solid var(--color-primary);
+        box-shadow: 0 4px 12px rgba(100, 149, 237, 0.35);
+      }
+
+      .login-brand h1 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--color-bg-from);
+        letter-spacing: 0.03em;
+      }
+
+      .login-brand p {
+        font-size: 0.8rem;
         color: var(--color-muted);
-        margin-bottom: 2rem;
+        margin-top: 0.15rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
       }
 
-      /* Agrupamento de campos */
-      .input-group {
+      .divider {
+        border: none;
+        border-top: 1px solid #e8eaed;
         margin-bottom: 1.5rem;
+      }
+
+      form h2 {
+        font-size: 1.4rem;
+        color: var(--color-dark);
+        margin-bottom: 0.3rem;
+        font-weight: 600;
+      }
+
+      .note {
+        font-size: 0.88rem;
+        color: var(--color-muted);
+        margin-bottom: 1.6rem;
+      }
+
+      .input-group {
+        margin-bottom: 1.3rem;
         display: flex;
         flex-direction: column;
         gap: 0.4rem;
+        position: relative;
       }
 
       .input-group label {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: var(--color-muted);
+        font-weight: 500;
       }
 
-      /* Campos de entrada */
       .input-group input {
         padding: 0.75rem 1rem;
-        border: 1px solid var(--color-border);
+        border: 1.5px solid var(--color-border);
         border-radius: var(--radius-sm);
         background: var(--color-input-bg);
-        font-size: 1rem;
-        transition: border-color var(--transition-fast),
-          box-shadow var(--transition-fast);
+        font-size: 0.95rem;
+        transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        font-family: var(--font-family-base);
       }
 
       .input-group input:focus {
         outline: none;
         border-color: var(--color-primary);
-        box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.15);
+        box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.18);
       }
 
-      /* Ícone de senha */
       .toggle-password {
         position: absolute;
-        right: 1rem;
-        top: 63%;
-        transform: translateY(-50%);
+        right: 0.9rem;
+        bottom: 0.72rem;
         cursor: pointer;
       }
 
       .toggle-password svg {
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         fill: var(--color-muted);
         transition: fill var(--transition-fast);
       }
@@ -145,168 +170,205 @@
         fill: var(--color-primary);
       }
 
-      /* Botão */
-      button {
+      .error-msg {
+        display: none;
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+        color: #dc2626;
+        border-radius: var(--radius-sm);
+        padding: 0.65rem 0.9rem;
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+        font-weight: 500;
+      }
+
+      .error-msg.visible {
+        display: block;
+      }
+
+      button[type="submit"] {
         width: 100%;
         padding: 0.9rem;
         font-size: 1rem;
-        font-weight: 600;
+        font-weight: 700;
         border: none;
         border-radius: var(--radius-sm);
         color: var(--color-white);
-        background: var(--color-primary);
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
         cursor: pointer;
-        transition: background-color var(--transition-fast),
-          transform var(--transition-fast), box-shadow var(--transition-fast);
+        transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+        font-family: var(--font-family-base);
+        letter-spacing: 0.04em;
       }
 
-      button:hover {
-        background-color: var(--color-primary-hover);
+      button[type="submit"]:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 20px rgba(100, 149, 237, 0.4);
       }
 
-      /* Fade-in */
+      button[type="submit"]:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-15px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-18px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
 
-      /* Responsivo - Mobile First */
       @media (max-width: 480px) {
-        form {
-          padding: 2rem 1.5rem;
-        }
-
-        .toggle-password {
-          top: 60%;
-        }
+        .login-card { padding: 2rem 1.5rem; }
       }
     </style>
   </head>
   <body>
-    <!-- Animações de Partículas (Opcional) -->
     <canvas class="particles" id="particlesCanvas"></canvas>
 
-    <form action="/login" method="POST">
-      <h2>Bem-vindo(a)!</h2>
-      <p class="note">Faça login para acessar o painel administrativo</p>
-      <div class="input-group">
-        <label for="username">Usuário:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          required
-          placeholder="Digite seu usuário"
-        />
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="brand-avatar"></div>
+        <h1>Leonardo Taborda</h1>
+        <p>Área administrativa</p>
       </div>
-      <div class="input-group">
-        <label for="password">Senha:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          placeholder="Digite sua senha"
-        />
-        <span class="toggle-password" onclick="togglePasswordVisibility()">
-          <svg id="eye-icon" viewBox="0 0 24 24">
-            <!-- Ícone de olho aberto -->
-            <path
-              d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"
-            />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-        </span>
-      </div>
-      <button type="submit">Entrar</button>
-    </form>
+      <hr class="divider" />
+      <form id="loginForm" novalidate>
+        <h2>Bem-vindo(a)!</h2>
+        <p class="note">Faça login para acessar o painel</p>
+
+        <div id="errorMsg" class="error-msg" role="alert"></div>
+
+        <div class="input-group">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required autocomplete="username" placeholder="seu@email.com" />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Senha:</label>
+          <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Digite sua senha" />
+          <span class="toggle-password" onclick="togglePasswordVisibility()">
+            <svg id="eye-icon" viewBox="0 0 24 24">
+              <path d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </span>
+        </div>
+
+        <button type="submit" id="submitBtn">Entrar</button>
+      </form>
+    </div>
+
+    <!-- Firebase Auth SDK -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+      import { firebaseConfig } from "/js/firebase-config.js";
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      const form = document.getElementById("loginForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const errorMsg = document.getElementById("errorMsg");
+
+      function showError(msg) {
+        errorMsg.textContent = msg;
+        errorMsg.classList.add("visible");
+      }
+
+      function hideError() {
+        errorMsg.classList.remove("visible");
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        hideError();
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Entrando...";
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          window.location.href = "/xpanel";
+        } catch (err) {
+          const messages = {
+            "auth/invalid-credential": "E-mail ou senha inválidos.",
+            "auth/user-not-found": "E-mail não encontrado.",
+            "auth/wrong-password": "Senha incorreta.",
+            "auth/too-many-requests": "Muitas tentativas. Tente mais tarde.",
+            "auth/network-request-failed": "Erro de rede. Verifique sua conexão.",
+          };
+          showError(messages[err.code] || "Erro ao fazer login. Tente novamente.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Entrar";
+        }
+      });
+    </script>
 
     <script>
       function togglePasswordVisibility() {
-        const passwordInput = document.getElementById("password");
-        const eyeIcon = document.getElementById("eye-icon");
-        if (passwordInput.type === "password") {
-          passwordInput.type = "text";
-          eyeIcon.innerHTML = `
-                    <!-- Ícone de olho fechado -->
-                    <path d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/>
-                `;
+        const input = document.getElementById("password");
+        const icon = document.getElementById("eye-icon");
+        if (input.type === "password") {
+          input.type = "text";
+          icon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-5 0-9.3-3.1-11-7 .9-2 2.5-3.8 4.5-5M9.9 4.24A9.12 9.12 0 0 1 12 4c5 0 9.3 3.1 11 7a10.14 10.14 0 0 1-2.37 3.43M3 3l18 18"/><circle cx="12" cy="12" r="3"/>`;
         } else {
-          passwordInput.type = "password";
-          eyeIcon.innerHTML = `
-                    <!-- Ícone de olho aberto -->
-                    <path d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                `;
+          input.type = "password";
+          icon.innerHTML = `<path d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/><circle cx="12" cy="12" r="3"/>`;
         }
       }
 
-      // (Opcional) Código para Animação de Partículas
-      // Este é um exemplo simples de partículas usando canvas
+      // Particle animation
       const canvas = document.getElementById("particlesCanvas");
       const ctx = canvas.getContext("2d");
-      let particlesArray;
-
-      const numberOfParticles = 100;
+      let particlesArray = [];
 
       class Particle {
         constructor() {
           this.x = Math.random() * canvas.width;
           this.y = Math.random() * canvas.height;
-          this.size = Math.random() * 2 + 1;
-          this.speedX = Math.random() * 1 - 0.5;
-          this.speedY = Math.random() * 1 - 0.5;
+          this.size = Math.random() * 2 + 0.5;
+          this.speedX = Math.random() * 0.8 - 0.4;
+          this.speedY = Math.random() * 0.8 - 0.4;
         }
-
         update() {
           this.x += this.speedX;
           this.y += this.speedY;
           if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
           if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
         }
-
         draw() {
-          ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+          ctx.fillStyle = "rgba(100,149,237,0.5)";
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      function init() {
+      function initParticles() {
         particlesArray = [];
-        for (let i = 0; i < numberOfParticles; i++) {
-          particlesArray.push(new Particle());
-        }
+        for (let i = 0; i < 90; i++) particlesArray.push(new Particle());
       }
 
-      function animate() {
+      function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particlesArray.forEach((particle) => {
-          particle.update();
-          particle.draw();
-        });
-        requestAnimationFrame(animate);
+        particlesArray.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animateParticles);
       }
 
-      window.addEventListener("resize", function () {
+      function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        init();
-      });
+        initParticles();
+      }
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-      animate();
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+      animateParticles();
     </script>
   </body>
 </html>
+
+    
