@@ -1,1 +1,7 @@
 /node_modules/
+service-account.json
+database.db
+*.db
+.env
+.env.example
+public/js/firebase-config.js
