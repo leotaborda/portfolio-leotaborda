@@ -1,6 +1,11 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
   "builds": [
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    },
     {
       "src": "server.js",
       "use": "@vercel/node"
@@ -8,8 +13,20 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/js/firebase-config.js",
       "dest": "server.js"
+    },
+    {
+      "src": "/xpanel/?",
+      "dest": "server.js"
+    },
+    {
+      "src": "/",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
     }
   ]
 }
