@@ -556,6 +556,7 @@ figure figcaption {
   #colorlib-hero .flexslider .slider-text > .slider-text-inner .btn {
     width: 100%;
   }
+
 }
 
 body.offcanvas {
@@ -1623,6 +1624,118 @@ body.offcanvas .colorlib-nav-toggle {
   box-shadow: 0px 0px 56px -8px rgba(0, 0, 0, 0.17);
 }
 
+.cv-download-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 100001;
+  background: rgba(255, 255, 255, 0.98);
+  overflow: hidden;
+}
+
+.cv-download-overlay.show {
+  display: block;
+}
+
+.cv-download-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(90vw, 520px);
+  transform: translate(-50%, calc(-50% + 18px));
+  opacity: 0;
+  text-align: center;
+  transition: transform 0.32s ease, opacity 0.3s ease;
+}
+
+.cv-download-overlay.show .cv-download-panel {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.cv-download-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cv-download-close:hover {
+  color: #1a1a1a;
+}
+
+.cv-download-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: rgba(44, 152, 240, 0.12);
+  color: #2c98f0;
+  font-size: 38px;
+  margin-bottom: 1.5rem;
+}
+
+.cv-download-panel h2 {
+  color: #1a1a1a;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+}
+
+.cv-download-panel p {
+  color: #6c757d;
+  font-size: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.cv-download-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cv-download-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  border: 1px solid rgba(44, 152, 240, 0.28);
+  background: #fff;
+  color: #2c98f0;
+  font-family: "Quicksand", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.cv-download-option:hover,
+.cv-download-option:focus {
+  background: #2c98f0;
+  border-color: #2c98f0;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 520px) {
+  .cv-download-options {
+    grid-template-columns: 1fr;
+  }
+}
+
 .testimonial-card {
   border-bottom-color: #2fa499;
   margin-bottom: 0;
@@ -1746,6 +1859,49 @@ body.offcanvas .colorlib-nav-toggle {
   .carousel-slide-next,
   .carousel-slide-prev {
     animation: none;
+  }
+}
+
+@media print {
+  #colorlib-aside,
+  .colorlib-nav-toggle,
+  #pageLoader,
+  #cvDownloadOverlay,
+  #successModal {
+    display: none !important;
+  }
+
+  #colorlib-page,
+  .container-wrap,
+  #colorlib-main {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    transform: none !important;
+  }
+
+  #colorlib-main {
+    display: block !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .animate-box,
+  .animated,
+  .fadeIn,
+  .fadeInLeft,
+  .fadeInRight,
+  .fadeInUp,
+  .item-animate {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
   }
 }
 
@@ -2713,4 +2869,27 @@ body.offcanvas .colorlib-nav-toggle {
 
 .top-button:hover {
   background-color: #e4e5eb;
+}
+
+@media print {
+  .colorlib-aside{
+    display: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #005eff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #003d99;
 }
