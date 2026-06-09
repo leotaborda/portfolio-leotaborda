@@ -12,8 +12,11 @@ app.get("/xpanel", (req, res) => {
 });
 
 const PORT = process.env.PORT || 7000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
-    console.log(`Painel admin em http://localhost:${PORT}/xpanel`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Servidor rodando em http://localhost:${PORT}`);
+        console.log(`Painel admin em http://localhost:${PORT}/xpanel`);
+    });
+}
 
+module.exports = app;
