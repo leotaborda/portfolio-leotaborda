@@ -1718,7 +1718,7 @@ body.offcanvas .colorlib-nav-toggle {
   margin-top: 4px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1050px) {
   .project-carousel-row,
   .testimonial-carousel-row {
     grid-template-columns: 36px minmax(0, 1fr) 36px;
