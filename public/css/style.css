@@ -2691,3 +2691,26 @@ body.offcanvas .colorlib-nav-toggle {
     padding: 1.5rem;
   }
 }
+
+.container-button-top {
+  padding: 10px 2.5em;
+}
+
+.top-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #f2f3f7;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.4s ease;
+  gap: 6px;
+}
+
+.top-button:hover {
+  background-color: #e4e5eb;
+}

@@ -80,7 +80,7 @@
 			<div class="colorlib-footer">
 				<p><small>&copy; <strong>leotaborda</strong> <script>document.write(new Date().getFullYear());</script> Direitos reservados.</small></p>
 				<ul>
-					<li><a href="https://www.instagram.com/_.taborda/" target="_blank"><i class="bi bi-instagram" style="color: cornflowerblue;"></i></a></li>
+					<li><a href="https://wa.me/5519994272241" target="_blank"><i class="bi bi-whatsapp" style="color: cornflowerblue;"></i></a></li>
 					<li><a href="https://www.linkedin.com/in/leotaborda/" target="_blank"><i class="bi bi-linkedin" style="color: cornflowerblue;"></i></a></li>
 					<li><a href="https://github.com/leotaborda" target="_blank"><i class="bi bi-github" style="color: cornflowerblue;"></i></a></li>
 					<li><a href="https://medium.com/@leotaborda" target="_blank"><i class="bi bi-medium" style="color: cornflowerblue;"></i></a></li>
@@ -783,7 +783,7 @@
 				</div>
 			</section>
 
-			<section class="colorlib-contact" data-section="contact">
+			<section class="colorlib-contact" data-section="contact" style="padding: 0;">
 				<div class="colorlib-narrow-content">
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
@@ -798,7 +798,7 @@
 									<i class="icon-globe-outline"></i>
 								</div>
 								<div class="colorlib-text">
-									<p><a href="#">leo.tabordaa@outlook.com</a></p>
+									<p><a href="mailto:leo.tabordaa@icloud.com">leo.tabordaa@icloud.com</a></p>
 								</div>
 							</div>
 
@@ -852,6 +852,9 @@
 				<br>
 				<br>
 				<br>
+				<div class="container-button-top">
+					<button class="top-button js-backTop">Voltar ao início<i class="bi bi-arrow-up"></i></button>
+				</div>
 			</section>
 
 		</div>
@@ -1449,6 +1452,23 @@
 			<p>Obrigado pelo contato. Em breve irei te retornar!</p>
 		</div>
 	</div>
+
+	<script>
+		var backTop = function () {
+			window.scrollTo ({
+				top: 0,
+				behavior: 'smooth'
+			})
+		};
+
+		document.addEventListener("DOMContentLoaded", function() {
+			var btnBackTop = document.querySelector(".js-backTop");
+
+			if (btnBackTop) {
+				btnBackTop.addEventListener("click", backTop);
+			}
+		})
+	</script>
 
 	</body>
 </html>

@@ -1362,6 +1362,9 @@ pre code {
 
   .col-md-5 {
     width: 41.66667%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .col-md-6 {
